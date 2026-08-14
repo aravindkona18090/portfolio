@@ -1166,30 +1166,32 @@
           <!-- FlexiRide Card -->
           <div class="project-card glass-panel" data-reveal>
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 14px;">
-              <div class="project-badge mono" style="margin-bottom:0;">● COMMERCIAL-GRADE CAMPUS POOLING</div>
+              <div class="project-badge mono" style="margin-bottom:0;">● CAMPUS MOBILITY &amp; PEER TRUST PLATFORM</div>
               <span class="mono" style="font-size:11px; font-weight:700; color:var(--teal); background:rgba(45,212,191,0.1); padding:3px 10px; border-radius:12px; border:1px solid rgba(45,212,191,0.25);">9.6 / 10 Benchmark Score</span>
             </div>
             <div class="project-head">
-              <h3>FlexiRide — Bike-First Campus Ride-Sharing &amp; Carpooling Platform</h3>
+              <h3>FlexiRide — Bike-First Campus Ride-Sharing &amp; Algorithmic Pooling Platform</h3>
             </div>
             <p style="color: #CBD5E1; font-size: 15px; margin-bottom: 16px; line-height: 1.6;">
-              A full-stack, production-ready web application designed for campus commuters to post, discover, and share bike &amp; car rides in real time — reducing daily travel costs, traffic congestion, and carbon emissions.
+              A full-stack, production-grade web platform solving campus commute friction through dynamic marginal-cost pricing, race-condition-safe atomic seat booking, Aadhaar Verhoeff \(D_5\) peer verification, and emergency SOS automation.
             </p>
             <ul class="project-bullets">
-              <li><strong>Post &amp; Share Rides:</strong> Drivers easily post available seats with custom departure times, pricing, and multi-stop route stops for campus commuters.</li>
-              <li><strong>Multi-Stop Mid-Route Booking:</strong> Passengers search and book seats from starting points or intermediate stops along a route using smart multi-lingual keyword matching (English &amp; Telugu).</li>
-              <li><strong>0% Fee UPI Payments &amp; Escrow Receipts:</strong> Integrated instant payments via GPay, PhonePe, &amp; Paytm with unique escrow hold references (<code style="color:var(--teal); font-size:13px;">TXN-FLX-*</code>) and printable travel receipts tracking CO₂ saved.</li>
-              <li><strong>Verified Identity &amp; Live GPS Safety:</strong> Secured with UIDAI Verhoeff Aadhaar verification, 15-minute brute-force lockout, and a one-touch HTML5 GPS SOS panic button sending live location maps to emergency contacts.</li>
+              <li><strong>Dynamic Marginal Pricing &amp; EV Incentive:</strong> Implemented tiered marginal cost-per-kilometer curves (\(₹10/₹20\) base + tiered km rates) with campus peak-hour surge multipliers (\(\times 1.25\)) and a \(10\%\) eco-discount for electric vehicles.</li>
+              <li><strong>Atomic Seat Locking &amp; Concurrency Control:</strong> Eliminates race conditions and double-booking via conditional SQL transaction locks (<code style="color:var(--teal); font-size:12.5px;">UPDATE rides SET seats = seats - ? WHERE id = ? AND seats &gt;= ?</code>) paired with 4-digit Trip OTP handshakes.</li>
+              <li><strong>Weighted Trust Scoring &amp; Verhoeff Identity (\(D_5\)):</strong> Multi-factor safety rating engine (\(0\text{--}100\%\) with Gold/Blue/Silver shields) combining dihedral group \(D_5\) Verhoeff Aadhaar verification, phone OTP, and institutional review.</li>
+              <li><strong>Geospatial Mid-Route Match &amp; Live GPS SOS:</strong> Tokenized intermediate waypoint routing (<code style="color:var(--teal); font-size:12.5px;">via_route</code> with Haversine distance), paired with a one-touch HTML5 GPS emergency panic button dispatching live Google Maps coordinates to emergency contacts.</li>
+              <li><strong>Native 0% Fee UPI, Escrow &amp; Digital Receipts:</strong> Direct UPI deep links (GPay, PhonePe, Paytm) with escrow hold tracking (<code style="color:var(--teal); font-size:12.5px;">TXN-FLX-*</code>) and automated travel receipts calculating financial &amp; carbon offset savings (\(0.045\text{ kg CO}_2\text{/km}\)).</li>
             </ul>
             <div class="tags-row mono">
               <span class="tag-chip">PHP 8</span>
-              <span class="tag-chip">MySQL</span>
+              <span class="tag-chip">MySQL (3NF / ACID)</span>
+              <span class="tag-chip">Dynamic Pricing Algorithm</span>
+              <span class="tag-chip">Verhoeff Dihedral D5</span>
+              <span class="tag-chip">Haversine GIS</span>
+              <span class="tag-chip">Atomic Concurrency</span>
               <span class="tag-chip">UPI Payment Gateway</span>
-              <span class="tag-chip">PWA / Service Worker</span>
-              <span class="tag-chip">Verhoeff UIDAI</span>
               <span class="tag-chip">HTML5 GPS SOS</span>
-              <span class="tag-chip">JavaScript</span>
-              <span class="tag-chip">Bootstrap</span>
+              <span class="tag-chip">PWA / Service Worker</span>
               <span class="tag-chip">Git</span>
             </div>
             <div class="live-footer">
@@ -1347,6 +1349,10 @@
             <div class="skill-card" data-category="core">
               <span class="skill-card-cat mono">Core CS / DB</span>
               <span class="skill-card-title">DBMS &amp; SQL Relational Schemas</span>
+            </div>
+            <div class="skill-card" data-category="core">
+              <span class="skill-card-cat mono">Concurrency &amp; Systems</span>
+              <span class="skill-card-title">Atomic DB Locks &amp; Race-Condition Defense</span>
             </div>
             <div class="skill-card" data-category="core">
               <span class="skill-card-cat mono">Geospatial Engineering</span>
