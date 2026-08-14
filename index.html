@@ -995,6 +995,125 @@
       flex-wrap: wrap;
       gap: 16px;
     }
+
+    /* ---------- PROJECT ARCHITECTURE MODAL ---------- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 8, 16, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-container {
+      background: #0B1324;
+      border: 1px solid rgba(45, 212, 191, 0.35);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 820px;
+      max-height: 88vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 35px rgba(45, 212, 191, 0.15);
+      transform: scale(0.94) translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      position: sticky;
+      top: 0;
+      background: rgba(11, 19, 36, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-card);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+    }
+
+    .modal-header h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--paper);
+    }
+
+    .modal-close {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-card);
+      color: var(--paper-muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(239, 68, 68, 0.15);
+      color: #F87171;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .modal-body {
+      padding: 24px;
+      color: #CBD5E1;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .modal-body h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--teal);
+      font-size: 15px;
+      margin: 20px 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-body h4:first-child {
+      margin-top: 0;
+    }
+
+    .modal-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-bottom: 14px;
+    }
+
+    .modal-box ul {
+      padding-left: 18px;
+      margin-top: 6px;
+    }
+
+    .modal-box li {
+      margin-bottom: 4px;
+    }
   </style>
 </head>
 
@@ -1166,32 +1285,30 @@
           <!-- FlexiRide Card -->
           <div class="project-card glass-panel" data-reveal>
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 14px;">
-              <div class="project-badge mono" style="margin-bottom:0;">● CAMPUS MOBILITY &amp; PEER TRUST PLATFORM</div>
+              <div class="project-badge mono" style="margin-bottom:0;">● CAMPUS MOBILITY &amp; PEER TRUST</div>
               <span class="mono" style="font-size:11px; font-weight:700; color:var(--teal); background:rgba(45,212,191,0.1); padding:3px 10px; border-radius:12px; border:1px solid rgba(45,212,191,0.25);">9.6 / 10 Benchmark Score</span>
             </div>
             <div class="project-head">
-              <h3>FlexiRide — Bike-First Campus Ride-Sharing &amp; Algorithmic Pooling Platform</h3>
+              <h3>FlexiRide — Bike-First Campus Ride-Sharing Platform</h3>
             </div>
             <p style="color: #CBD5E1; font-size: 15px; margin-bottom: 16px; line-height: 1.6;">
-              A full-stack, production-grade web platform solving campus commute friction through dynamic marginal-cost pricing, race-condition-safe atomic seat booking, Aadhaar Verhoeff \(D_5\) peer verification, and emergency SOS automation.
+              A full-stack campus carpooling platform that connects student commuters to post, discover, and book shared rides in real time — reducing daily travel costs and vehicle emissions.
             </p>
             <ul class="project-bullets">
-              <li><strong>Dynamic Marginal Pricing &amp; EV Incentive:</strong> Implemented tiered marginal cost-per-kilometer curves (\(₹10/₹20\) base + tiered km rates) with campus peak-hour surge multipliers (\(\times 1.25\)) and a \(10\%\) eco-discount for electric vehicles.</li>
-              <li><strong>Atomic Seat Locking &amp; Concurrency Control:</strong> Eliminates race conditions and double-booking via conditional SQL transaction locks (<code style="color:var(--teal); font-size:12.5px;">UPDATE rides SET seats = seats - ? WHERE id = ? AND seats &gt;= ?</code>) paired with 4-digit Trip OTP handshakes.</li>
-              <li><strong>Weighted Trust Scoring &amp; Verhoeff Identity (\(D_5\)):</strong> Multi-factor safety rating engine (\(0\text{--}100\%\) with Gold/Blue/Silver shields) combining dihedral group \(D_5\) Verhoeff Aadhaar verification, phone OTP, and institutional review.</li>
-              <li><strong>Geospatial Mid-Route Match &amp; Live GPS SOS:</strong> Tokenized intermediate waypoint routing (<code style="color:var(--teal); font-size:12.5px;">via_route</code> with Haversine distance), paired with a one-touch HTML5 GPS emergency panic button dispatching live Google Maps coordinates to emergency contacts.</li>
-              <li><strong>Native 0% Fee UPI, Escrow &amp; Digital Receipts:</strong> Direct UPI deep links (GPay, PhonePe, Paytm) with escrow hold tracking (<code style="color:var(--teal); font-size:12.5px;">TXN-FLX-*</code>) and automated travel receipts calculating financial &amp; carbon offset savings (\(0.045\text{ kg CO}_2\text{/km}\)).</li>
+              <li><strong>Dynamic Marginal Pricing:</strong> Tiered distance cost curves (\(₹10/₹20\) base + marginal rates) with peak surge multipliers and EV eco-discounts.</li>
+              <li><strong>Race-Condition-Safe Booking:</strong> Atomic database transaction locks preventing seat double-booking, paired with 4-digit Trip OTP handshakes.</li>
+              <li><strong>Aadhaar Verhoeff &amp; Trust Scoring:</strong> Multi-factor identity validation using the Verhoeff algorithm (\(D_5\)) with live HTML5 GPS SOS emergency alerts.</li>
+              <li><strong>0% Fee UPI &amp; Digital Receipts:</strong> Direct UPI deep links (GPay, PhonePe, Paytm) with escrow tracking and automated carbon offset receipts.</li>
             </ul>
             <div class="tags-row mono">
               <span class="tag-chip">PHP 8</span>
               <span class="tag-chip">MySQL (3NF / ACID)</span>
-              <span class="tag-chip">Dynamic Pricing Algorithm</span>
-              <span class="tag-chip">Verhoeff Dihedral D5</span>
-              <span class="tag-chip">Haversine GIS</span>
+              <span class="tag-chip">Dynamic Pricing</span>
+              <span class="tag-chip">Verhoeff D5</span>
               <span class="tag-chip">Atomic Concurrency</span>
-              <span class="tag-chip">UPI Payment Gateway</span>
+              <span class="tag-chip">UPI Gateway</span>
               <span class="tag-chip">HTML5 GPS SOS</span>
-              <span class="tag-chip">PWA / Service Worker</span>
+              <span class="tag-chip">PWA</span>
               <span class="tag-chip">Git</span>
             </div>
             <div class="live-footer">
@@ -1199,6 +1316,10 @@
                 <span class="pulse-green"></span> DEPLOYED ON RAILWAY
               </div>
               <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                <button class="demo-btn mono" onclick="openModal('flexirideModal')" style="background: rgba(45, 212, 191, 0.1); border-color: rgba(45, 212, 191, 0.3); color: var(--teal); cursor: pointer;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  <span>Architecture Deep Dive</span>
+                </button>
                 <a class="demo-btn mono" href="https://github.com/aravindkona18090" target="_blank" rel="noopener"
                   style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: var(--paper);">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1220,20 +1341,20 @@
           <!-- CivicConnect Card -->
           <div class="project-card glass-panel" data-reveal>
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 14px;">
-              <div class="project-badge mono" style="margin-bottom:0;">● AI-POWERED SMART MUNICIPAL GOVERNANCE</div>
+              <div class="project-badge mono" style="margin-bottom:0;">● SMART CITY GOVERNANCE &amp; AI</div>
               <span class="mono" style="font-size:11px; font-weight:700; color:var(--teal); background:rgba(45,212,191,0.1); padding:3px 10px; border-radius:12px; border:1px solid rgba(45,212,191,0.25);">Google Gemini Vision AI &amp; GIS</span>
             </div>
             <div class="project-head">
               <h3>CivicConnect — Smart Municipal Intelligence &amp; Civic Redressal Platform</h3>
             </div>
             <p style="color: #CBD5E1; font-size: 15px; margin-bottom: 16px; line-height: 1.6;">
-              An end-to-end smart city governance platform connecting citizens, municipal field officers, and administrators — leveraging Multimodal Vision AI, 45m Haversine GIS deduplication, and verified Before-vs-After resolution auditing.
+              An automated civic issue redressal platform connecting citizens, municipal field workers, and city administrators to detect, route, and verify public infrastructure repairs.
             </p>
             <ul class="project-bullets">
-              <li><strong>Google Gemini Multimodal Vision AI:</strong> Auto-analyzes uploaded photo evidence to detect category (<code style="color:var(--teal); font-size:13px;">Roads, Sanitation, Electricity, Water</code>), rate severity levels (<code style="color:var(--teal); font-size:13px;">Critical, High, Medium, Low</code>), and generate issue descriptions (with PyTorch MobileNetV2 offline fallback).</li>
-              <li><strong>3-Tier Role Architecture (Citizen, Field Worker, Admin):</strong> Citizens get AI camera scanning, voice-to-text, &amp; 24/7 CivicBot AI chat (4 languages: EN, TE, HI, KN); Field Workers get turn-by-turn Google Maps GPS navigation &amp; 1-click translation; Admins get severity heatmaps &amp; proof-of-fix verification.</li>
-              <li><strong>45-Meter GIS Haversine Deduplication:</strong> Eliminates municipal ticket spam by detecting duplicate reports within a 45m radius on Leaflet.js / OpenStreetMap before worker allocation.</li>
-              <li><strong>Verified Before-vs-After Audit &amp; Security:</strong> Enforces photographic proof comparison before closing tickets, built on PHP 8 REST APIs, BCRYPT hashing, 100% prepared SQL statements, and environment variable API key protection (<code style="color:var(--teal); font-size:13px;">getenv('GEMINI_API_KEY')</code>).</li>
+              <li><strong>Google Gemini Multimodal Vision AI:</strong> Auto-classifies issues (<code style="color:var(--teal); font-size:13px;">Roads, Sanitation, Electricity, Water</code>), rates severity, and generates descriptions.</li>
+              <li><strong>3-Tier Role Portals:</strong> Dedicated workspaces for Citizens (voice inputs, 24/7 AI chat), Field Workers (GPS turn-by-turn routing), and Admins (severity heatmaps).</li>
+              <li><strong>45m Geospatial GIS Deduplication:</strong> Prevents duplicate complaint spam using Haversine distance on Leaflet.js / OpenStreetMap.</li>
+              <li><strong>Verified Before-vs-After Audit:</strong> Enforces photographic proof comparison before closing tickets, built on secure PHP 8 REST APIs with zero-leak key protection.</li>
             </ul>
             <div class="tags-row mono">
               <span class="tag-chip">PHP 8</span>
@@ -1243,8 +1364,7 @@
               <span class="tag-chip">45m Haversine Deduplication</span>
               <span class="tag-chip">Multilingual AI (4 Lang)</span>
               <span class="tag-chip">GPS Navigation API</span>
-              <span class="tag-chip">JavaScript (ES6+)</span>
-              <span class="tag-chip">PyTorch ML Fallback</span>
+              <span class="tag-chip">PyTorch ML</span>
               <span class="tag-chip">Git</span>
             </div>
             <div class="live-footer">
@@ -1252,6 +1372,10 @@
                 <span class="pulse-green"></span> DEPLOYED ON RAILWAY
               </div>
               <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                <button class="demo-btn mono" onclick="openModal('civicconnectModal')" style="background: rgba(45, 212, 191, 0.1); border-color: rgba(45, 212, 191, 0.3); color: var(--teal); cursor: pointer;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  <span>Architecture Deep Dive</span>
+                </button>
                 <a class="demo-btn mono" href="https://github.com/aravindkona18090" target="_blank" rel="noopener"
                   style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: var(--paper);">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1767,7 +1891,145 @@
         });
       });
     }
+
+    // Architecture Deep-Dive Modals
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close modal on backdrop click or ESC key
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+    });
   </script>
+
+  <!-- FLEXIRIDE ARCHITECTURE MODAL -->
+  <div class="modal-overlay" id="flexirideModal" role="dialog" aria-modal="true" aria-labelledby="flexirideModalTitle">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div>
+          <h3 id="flexirideModalTitle">🚗 FlexiRide — Architecture &amp; System Design</h3>
+          <span class="mono" style="font-size: 11px; color: var(--teal);">Full-Stack Campus Mobility Platform • Benchmark: 9.6 / 10</span>
+        </div>
+        <button class="modal-close" onclick="closeModal('flexirideModal')" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        
+        <h4>📌 1. System Overview &amp; Motivation</h4>
+        <div class="modal-box">
+          <p><strong>FlexiRide</strong> is a full-stack, bike-first and carpooling web platform designed for campus communities and daily commuters. It eliminates high solo-commute costs and campus traffic by algorithmically matching drivers and passengers with transparent cost-sharing and safety verification.</p>
+        </div>
+
+        <h4>🧠 2. Core Mathematical &amp; Algorithmic Models</h4>
+        <div class="modal-box">
+          <ul>
+            <li><strong>Dynamic Tiered Pricing Engine:</strong> Implements marginal distance pricing curves:<br>
+              • <em>Bike:</em> ₹10 base + ₹3/km (first 10km) → ₹2/km (10–30km) → ₹1.50/km (30–60km) → ₹1.20/km (&gt;60km)<br>
+              • <em>Car:</em> ₹20 base + ₹5.50/km (first 10km) → ₹4/km (10–30km) → ₹3/km (30–60km) → ₹2.20/km (&gt;60km)<br>
+              • <em>Peak Surge:</em> ×1.25 multiplier during morning entry (8–10 AM) &amp; evening exit (4–7 PM).<br>
+              • <em>EV Incentive:</em> 10% eco-discount for electric vehicles.
+            </li>
+            <li><strong>Atomic Concurrency &amp; Seat Locking:</strong> Solves race conditions and double-booking using conditional MySQL transactions:
+              <code style="display:block; background:rgba(0,0,0,0.4); padding:6px 10px; border-radius:6px; margin-top:4px; font-size:12px; color:var(--teal);">UPDATE rides SET seats_available = seats_available - ? WHERE id = ? AND seats_available &gt;= ?</code>
+            </li>
+            <li><strong>Weighted Trust &amp; Safety Rating (0–100%):</strong><br>
+              Score = 20 (Base) + 30 (Phone OTP) + 35 (Aadhaar Verified) + 15 (DL Audit).<br>
+              Tiered badges: <strong>Gold Shield</strong> (≥80%), <strong>Blue Shield</strong> (50–79%), <strong>Silver Shield</strong> (&lt;50%).
+            </li>
+            <li><strong>Geospatial Haversine Formula:</strong> Calculates great-circle spatial distance between coordinate pairs without paid external API overhead.</li>
+          </ul>
+        </div>
+
+        <h4>🏛️ 3. Normalized Database Schema (3NF) &amp; Security</h4>
+        <div class="modal-box">
+          <ul>
+            <li><strong>Schema Entities:</strong> 3NF-normalized tables for <code>users</code>, <code>user_verifications</code>, <code>user_emergency_contacts</code>, <code>vehicles</code>, <code>rides</code>, <code>bookings</code>, <code>messages</code>, <code>ratings</code>.</li>
+            <li><strong>Identity Verification:</strong> Aadhaar numbers verified mathematically using the <strong>Verhoeff algorithm</strong> (dihedral group \(D_5\)).</li>
+            <li><strong>Security Hardening:</strong> 100% prepared SQL statements, BCRYPT password hashing, CSRF session tokens validated via <code>hash_equals()</code>, and binary MIME-type upload checks (<code>finfo</code>) with UUID renaming.</li>
+            <li><strong>Emergency SOS Automation:</strong> One-touch HTML5 GPS panic button generating live Google Maps links and alerting emergency contacts.</li>
+          </ul>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <a class="demo-btn mono" href="https://github.com/aravindkona18090" target="_blank" rel="noopener" style="font-size:12px;">GitHub Repo</a>
+          <a class="demo-btn mono" href="https://flexiride.up.railway.app/" target="_blank" rel="noopener" style="font-size:12px; background:var(--teal); color:var(--bg-dark);">Live Railway Demo ↗</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CIVICCONNECT ARCHITECTURE MODAL -->
+  <div class="modal-overlay" id="civicconnectModal" role="dialog" aria-modal="true" aria-labelledby="civicconnectModalTitle">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div>
+          <h3 id="civicconnectModalTitle">🏛️ CivicConnect — Architecture &amp; System Design</h3>
+          <span class="mono" style="font-size: 11px; color: var(--teal);">Smart Municipal Intelligence Platform • Google Gemini Vision AI</span>
+        </div>
+        <button class="modal-close" onclick="closeModal('civicconnectModal')" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        
+        <h4>📌 1. System Overview &amp; Mission</h4>
+        <div class="modal-box">
+          <p><strong>CivicConnect</strong> is an end-to-end, AI-powered smart city governance and municipal grievance redressal platform. It automates civic workflows between citizens, field officers, and administrators to ensure verified, rapid resolution of public infrastructure issues (potholes, garbage, broken streetlights, water leakage).</p>
+        </div>
+
+        <h4>🏛️ 2. Three-Tier Role-Based Architecture</h4>
+        <div class="modal-box">
+          <ul>
+            <li><strong>👤 Citizen Portal (<code>/peoplelogin</code>):</strong> AI camera scanner with automatic category detection and severity rating, Leaflet.js GPS location pinning, voice-to-text input (Web Speech API), 24/7 CivicBot AI chat (EN, TE, HI, KN), and Before vs. After resolution photo comparison.</li>
+            <li><strong>👷 Field Officer Portal (<code>/workerlogin</code>):</strong> Task inspection workspace with 1-click turn-by-turn Google Maps GPS driving directions, citizen click-to-call cards, 1-click dynamic AI translation, and photographic proof-of-work evidence uploader.</li>
+            <li><strong>🛡️ Municipal Admin Portal (<code>/adminlogin</code>):</strong> Central intelligence dashboard with department workload filters, severity heatmaps, proximity-based officer allocation, and visual Before vs. After audit verification before closing tickets.</li>
+          </ul>
+        </div>
+
+        <h4>🧠 3. AI Engines, Deduplication &amp; Security</h4>
+        <div class="modal-box">
+          <ul>
+            <li><strong>Google Gemini Multimodal Vision AI (<code>gemini-3.6-flash</code>):</strong> Analyzes uploaded complaint photos in real time, auto-categorizes municipal departments, rates severity levels (<em>Low, Medium, High, Critical</em>), and generates human-like descriptions (with PyTorch MobileNetV2 offline fallback).</li>
+            <li><strong>45-Meter Geospatial Haversine Deduplication:</strong> Eliminates duplicate complaint spam by checking distance radius between new pins and existing tickets on Leaflet/OpenStreetMap.</li>
+            <li><strong>Multilingual Generative NLP:</strong> 24/7 session-aware conversational chatbot and dynamic translation engine supporting English, Telugu (తెలుగు), Hindi (हिंदी), and Kannada (ಕನ್ನಡ).</li>
+            <li><strong>Enterprise Security Architecture:</strong> PHP 8 REST JSON endpoints, 100% prepared SQL statements, BCRYPT password hashing, zero-leak API keys via environment variables (<code>getenv('GEMINI_API_KEY')</code>), and PHPMailer 6-digit OTP verification.</li>
+          </ul>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <a class="demo-btn mono" href="https://github.com/aravindkona18090" target="_blank" rel="noopener" style="font-size:12px;">GitHub Repo</a>
+          <a class="demo-btn mono" href="https://civicconnect.up.railway.app/" target="_blank" rel="noopener" style="font-size:12px; background:var(--teal); color:var(--bg-dark);">Live Railway Demo ↗</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>
