@@ -996,6 +996,142 @@
       gap: 16px;
     }
 
+    /* ---------- TELEMETRY HUD RIBBON ---------- */
+    .hud-ribbon {
+      background: rgba(8, 14, 28, 0.9);
+      border-bottom: 1px solid rgba(45, 212, 191, 0.2);
+      font-size: 11px;
+      color: var(--paper-muted);
+      padding: 6px 0;
+      position: relative;
+      z-index: 1001;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .hud-ribbon .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hud-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hud-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 10px var(--teal);
+      animation: hudPulse 2s infinite;
+    }
+
+    @keyframes hudPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* ---------- INTERACTIVE SIMULATOR ENGINES ---------- */
+    .sim-engine-box {
+      background: rgba(6, 11, 23, 0.75);
+      border: 1px solid rgba(45, 212, 191, 0.25);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin: 18px 0 14px;
+      position: relative;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .sim-engine-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .sim-engine-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sim-btn-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .sim-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--paper-muted);
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .sim-btn:hover, .sim-btn.active {
+      background: rgba(45, 212, 191, 0.15);
+      border-color: var(--teal);
+      color: var(--paper);
+    }
+
+    .sim-readout-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .sim-readout-card {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+      padding: 10px;
+    }
+
+    .sim-readout-lbl {
+      font-size: 10px;
+      color: var(--paper-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .sim-readout-val {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--paper);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .sim-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .sim-slider {
+      flex: 1;
+      accent-color: var(--teal);
+      cursor: pointer;
+    }
+
     /* ---------- PROJECT ARCHITECTURE MODAL ---------- */
     .modal-overlay {
       position: fixed;
@@ -1123,6 +1259,23 @@
   <div class="bg-grid"></div>
 
   <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- TELEMETRY HUD TOP BAR -->
+  <div class="hud-ribbon mono">
+    <div class="wrap">
+      <div class="hud-item">
+        <span class="hud-pulse"></span>
+        <span style="color: var(--teal); font-weight:700;">SYS_TELEMETRY: ONLINE</span>
+        <span style="color: rgba(255,255,255,0.2);">|</span>
+        <span>BANGALORE NODE: 12.9716° N, 77.5946° E</span>
+      </div>
+      <div class="hud-item" style="gap:14px;">
+        <span>SERVICES: <strong style="color:var(--paper);">2 DEPLOYED (RAILWAY)</strong></span>
+        <span style="color: rgba(255,255,255,0.2);">|</span>
+        <span id="hudTimestamp">17:50:00 IST</span>
+      </div>
+    </div>
+  </div>
 
   <!-- NAVIGATION -->
   <header id="header">
@@ -1297,6 +1450,42 @@
               <li><strong>Google Gemini Multimodal Vision AI:</strong> Integrated Gemini Vision API for automated complaint classification and severity scoring, with a PyTorch CNN offline fallback (MobileNetV2/ResNet50).</li>
               <li><strong>45m Geospatial GIS Deduplication:</strong> Engineered geospatial duplicate detection via the Haversine formula, clustering complaints within a 45m radius on Leaflet.js / OpenStreetMap.</li>
             </ul>
+
+            <!-- Interactive Live Vision & GIS Engine Testbed -->
+            <div class="sim-engine-box">
+              <div class="sim-engine-header">
+                <span class="sim-engine-title mono">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  LIVE TESTBED: GEMINI MULTIMODAL VISION AI &amp; GIS DEDUPLICATION
+                </span>
+                <span class="mono" style="font-size:10px; color:var(--teal);">CLICK INCIDENT TO SIMULATE</span>
+              </div>
+              <div class="sim-btn-group mono">
+                <button class="sim-btn active" id="simBtn-pothole" onclick="runVisionSim('pothole')">🚧 Road Pothole</button>
+                <button class="sim-btn" id="simBtn-light" onclick="runVisionSim('light')">💡 Broken Streetlight</button>
+                <button class="sim-btn" id="simBtn-drainage" onclick="runVisionSim('drainage')">💧 Drainage Leak</button>
+                <button class="sim-btn" id="simBtn-garbage" onclick="runVisionSim('garbage')">🗑️ Garbage Dump</button>
+              </div>
+              <div class="sim-readout-grid mono">
+                <div class="sim-readout-card">
+                  <div class="sim-readout-lbl">Vision Category</div>
+                  <div class="sim-readout-val" id="simVisionCat" style="color:var(--teal);">ROADS &amp; HIGHWAYS</div>
+                </div>
+                <div class="sim-readout-card">
+                  <div class="sim-readout-lbl">Severity Rating</div>
+                  <div class="sim-readout-val" id="simVisionSev" style="color:#F87171;">CRITICAL (HIGH)</div>
+                </div>
+                <div class="sim-readout-card">
+                  <div class="sim-readout-lbl">Haversine GIS 45m</div>
+                  <div class="sim-readout-val" id="simVisionGis" style="color:var(--amber);">RADIUS: 28M (CLUSTERED)</div>
+                </div>
+                <div class="sim-readout-card">
+                  <div class="sim-readout-lbl">Model Pipeline</div>
+                  <div class="sim-readout-val" id="simVisionModel">GEMINI 3.6-FLASH</div>
+                </div>
+              </div>
+            </div>
+
             <div class="tags-row mono">
               <span class="tag-chip">Python</span>
               <span class="tag-chip">PHP 8</span>
@@ -1352,6 +1541,44 @@
               <li><strong>Dynamic Tiered Pricing Engine:</strong> Implemented a dynamic tiered pricing engine with campus peak-hour surge calculations and eco-incentive discounts for EVs.</li>
               <li><strong>Aadhaar Verhoeff &amp; Emergency SOS:</strong> Designed an identity trust-scoring model using the Verhoeff checksum algorithm (\(D_5\)) for Aadhaar verification, plus emergency SOS GPS dispatch.</li>
             </ul>
+
+            <!-- Interactive Live Dynamic Pricing & Concurrency Engine Testbed -->
+            <div class="sim-engine-box">
+              <div class="sim-engine-header">
+                <span class="sim-engine-title mono">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  LIVE TESTBED: DYNAMIC MARGINAL PRICING &amp; CONCURRENCY LOCK
+                </span>
+                <span class="mono" style="font-size:10px; color:var(--teal);">DRAG DISTANCE SLIDER</span>
+              </div>
+              <div class="sim-slider-row mono">
+                <span style="font-size:12px; color:var(--paper-muted); min-width:110px;">Distance: <strong id="simDistLbl" style="color:var(--teal);">18 km</strong></span>
+                <input type="range" min="3" max="80" value="18" class="sim-slider" id="simDistSlider" oninput="updatePricingSim()">
+              </div>
+              <div class="sim-btn-group mono" style="margin-bottom:10px;">
+                <button class="sim-btn" id="simSurgeBtn" onclick="toggleSurgeSim()">⚡ Peak Surge (1.25x)</button>
+                <button class="sim-btn" id="simEvBtn" onclick="toggleEvSim()">🌱 EV Eco-Discount (-10%)</button>
+              </div>
+              <div class="sim-readout-grid mono">
+                <div class="sim-readout-card">
+                  <div class="sim-readout-lbl">Calculated Share</div>
+                  <div class="sim-readout-val" id="simFareVal" style="color:var(--teal);">₹54.00</div>
+                </div>
+                <div class="sim-readout-card">
+                  <div class="sim-readout-lbl">Marginal Rate</div>
+                  <div class="sim-readout-val" id="simRateVal">₹2.00 / km</div>
+                </div>
+                <div class="sim-readout-card">
+                  <div class="sim-readout-lbl">CO₂ Offset Saved</div>
+                  <div class="sim-readout-val" id="simCo2Val" style="color:#34D399;">0.81 kg CO₂</div>
+                </div>
+                <div class="sim-readout-card">
+                  <div class="sim-readout-lbl">Atomic ACID Lock</div>
+                  <div class="sim-readout-val" style="color:var(--teal);">ACQUIRED (1 SEAT)</div>
+                </div>
+              </div>
+            </div>
+
             <div class="tags-row mono">
               <span class="tag-chip">PHP 8.x</span>
               <span class="tag-chip">MySQL (3NF / ACID)</span>
@@ -1952,6 +2179,138 @@
           console.error('Failed to copy: ', err);
         });
       });
+    }
+
+    // Live Telemetry Clock Updater
+    function updateHudTimestamp() {
+      const el = document.getElementById('hudTimestamp');
+      if (!el) return;
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-IN', { hour12: false });
+      el.textContent = `${timeStr} IST`;
+    }
+    setInterval(updateHudTimestamp, 1000);
+    updateHudTimestamp();
+
+    // CivicConnect Interactive Vision & GIS Simulation Engine
+    const visionSimData = {
+      pothole: {
+        cat: 'ROADS & HIGHWAYS',
+        sev: 'CRITICAL (HIGH)',
+        sevColor: '#F87171',
+        gis: 'RADIUS: 28M (CLUSTERED)',
+        gisColor: 'var(--amber)',
+        model: 'GEMINI 3.6-FLASH'
+      },
+      light: {
+        cat: 'ELECTRICAL GRID',
+        sev: 'MEDIUM SEVERITY',
+        sevColor: 'var(--amber)',
+        gis: 'RADIUS: 110M (NEW TICKET)',
+        gisColor: 'var(--teal)',
+        model: 'GEMINI 3.6-FLASH'
+      },
+      drainage: {
+        cat: 'WATER & SEWAGE',
+        sev: 'HIGH SEVERITY',
+        sevColor: '#F87171',
+        gis: 'RADIUS: 14M (CLUSTERED)',
+        gisColor: 'var(--amber)',
+        model: 'GEMINI 3.6-FLASH'
+      },
+      garbage: {
+        cat: 'SANITATION & WASTE',
+        sev: 'MEDIUM-HIGH',
+        sevColor: '#FCD34D',
+        gis: 'RADIUS: 36M (CLUSTERED)',
+        gisColor: 'var(--amber)',
+        model: 'GEMINI 3.6-FLASH'
+      }
+    };
+
+    function runVisionSim(type) {
+      const data = visionSimData[type];
+      if (!data) return;
+
+      document.querySelectorAll('.sim-btn-group button[id^="simBtn-"]').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`simBtn-${type}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const catEl = document.getElementById('simVisionCat');
+      const sevEl = document.getElementById('simVisionSev');
+      const gisEl = document.getElementById('simVisionGis');
+      const modelEl = document.getElementById('simVisionModel');
+
+      if (catEl) catEl.textContent = data.cat;
+      if (sevEl) {
+        sevEl.textContent = data.sev;
+        sevEl.style.color = data.sevColor;
+      }
+      if (gisEl) {
+        gisEl.textContent = data.gis;
+        gisEl.style.color = data.gisColor;
+      }
+      if (modelEl) modelEl.textContent = data.model;
+    }
+
+    // FlexiRide Interactive Dynamic Pricing & Concurrency Engine
+    let isSurgeActive = false;
+    let isEvActive = false;
+
+    function toggleSurgeSim() {
+      isSurgeActive = !isSurgeActive;
+      const btn = document.getElementById('simSurgeBtn');
+      if (btn) btn.classList.toggle('active', isSurgeActive);
+      updatePricingSim();
+    }
+
+    function toggleEvSim() {
+      isEvActive = !isEvActive;
+      const btn = document.getElementById('simEvBtn');
+      if (btn) btn.classList.toggle('active', isEvActive);
+      updatePricingSim();
+    }
+
+    function updatePricingSim() {
+      const slider = document.getElementById('simDistSlider');
+      if (!slider) return;
+      const dist = parseFloat(slider.value);
+
+      const distLbl = document.getElementById('simDistLbl');
+      if (distLbl) distLbl.textContent = `${dist} km`;
+
+      // Marginal Tiered Bike Pricing Formula
+      let baseFare = 10;
+      let marginalCost = 0;
+      let currentRate = 3.00;
+
+      if (dist <= 10) {
+        marginalCost = dist * 3.00;
+        currentRate = 3.00;
+      } else if (dist <= 30) {
+        marginalCost = (10 * 3.00) + ((dist - 10) * 2.00);
+        currentRate = 2.00;
+      } else if (dist <= 60) {
+        marginalCost = (10 * 3.00) + (20 * 2.00) + ((dist - 30) * 1.50);
+        currentRate = 1.50;
+      } else {
+        marginalCost = (10 * 3.00) + (20 * 2.00) + (30 * 1.50) + ((dist - 60) * 1.20);
+        currentRate = 1.20;
+      }
+
+      let totalFare = baseFare + marginalCost;
+      if (isSurgeActive) totalFare *= 1.25;
+      if (isEvActive) totalFare *= 0.90;
+
+      const co2Offset = (dist * 0.045).toFixed(2);
+
+      const fareVal = document.getElementById('simFareVal');
+      const rateVal = document.getElementById('simRateVal');
+      const co2Val = document.getElementById('simCo2Val');
+
+      if (fareVal) fareVal.textContent = `₹${totalFare.toFixed(2)}`;
+      if (rateVal) rateVal.textContent = `₹${currentRate.toFixed(2)} / km`;
+      if (co2Val) co2Val.textContent = `${co2Offset} kg CO₂`;
     }
 
     // Architecture Deep-Dive Modals
