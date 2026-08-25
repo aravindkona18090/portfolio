@@ -4,43 +4,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kona Aravind Ranga Reddy — Software Engineer, AI/ML</title>
+  <title>Kona Aravind Ranga Reddy — AI/ML &amp; Full-Stack Software Engineer</title>
   <meta name="description"
-    content="Portfolio of Kona Aravind Ranga Reddy — AI/ML undergraduate in Bangalore who ships full-stack products. Two live deployed projects: FlexiRide and CivicConnect. Open to internships and entry-level roles.">
-  <meta name="theme-color" content="#0A0F1D">
+    content="Kona Aravind Ranga Reddy — Computer Science &amp; AI/ML Engineer in Bangalore. Team lead on two deployed production platforms: CivicConnect (Google Gemini Vision AI) and FlexiRide (Concurrency &amp; Dynamic Pricing).">
+  <meta name="theme-color" content="#030712">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Kona Aravind Ranga Reddy — Software Engineer, AI/ML">
+  <meta property="og:title" content="Kona Aravind Ranga Reddy — AI/ML &amp; Full-Stack Software Engineer">
   <meta property="og:description"
-    content="AI/ML undergraduate in Bangalore who ships full-stack products. Two live deployed projects below.">
+    content="Computer Science &amp; AI/ML Engineer in Bangalore. Production deployed platforms: CivicConnect and FlexiRide.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kona Aravind Ranga Reddy — Software Engineer, AI/ML">
-  <meta name="twitter:description" content="AI/ML undergraduate in Bangalore who ships full-stack products.">
 
   <link rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230A0F1D'/%3E%3Ctext x='32' y='42' font-family='sans-serif' font-weight='800' font-size='26' fill='%232DD4BF' text-anchor='middle'%3EKR%3C/text%3E%3C/svg%3E">
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23030712' stroke='%2300F5D4' stroke-width='2'/%3E%3Ctext x='32' y='42' font-family='monospace' font-weight='900' font-size='24' fill='%2300F5D4' text-anchor='middle'%3EKARR%3C/text%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
   <style>
     :root {
-      --bg-dark: #070B14;
-      --bg-card: rgba(15, 23, 42, 0.65);
-      --bg-card-hover: rgba(24, 36, 64, 0.8);
-      --border-card: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(45, 212, 191, 0.3);
+      --bg-dark: #030712;
+      --bg-surface: #060B18;
+      --bg-card: rgba(8, 15, 30, 0.78);
+      --bg-card-hover: rgba(14, 25, 50, 0.88);
+      --border-card: rgba(0, 245, 212, 0.15);
+      --border-card-hover: rgba(0, 245, 212, 0.45);
+      --border-accent: rgba(0, 245, 212, 0.4);
 
-      --teal: #2DD4BF;
-      --teal-glow: rgba(45, 212, 191, 0.25);
-      --cyan: #06B6D4;
+      --teal: #00F5D4;
+      --teal-dim: #059669;
+      --teal-glow: rgba(0, 245, 212, 0.28);
+      --cyan: #0EA5E9;
       --amber: #F59E0B;
+      --amber-glow: rgba(245, 158, 11, 0.25);
+      --danger: #EF4444;
       --indigo: #6366F1;
-      --paper: #F1F5F9;
+      --paper: #F8FAFC;
       --paper-muted: #94A3B8;
-      --line: rgba(255, 255, 255, 0.07);
+      --line: rgba(255, 255, 255, 0.08);
+      --grid-line: rgba(0, 245, 212, 0.035);
       --radius-lg: 16px;
       --radius-md: 10px;
       --radius-sm: 6px;
@@ -61,19 +65,17 @@
       background-color: var(--bg-dark);
       color: var(--paper);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      line-height: 1.6;
+      line-height: 1.65;
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
     }
 
-    /* Custom Selection */
     ::selection {
       background: var(--teal);
-      color: var(--bg-dark);
+      color: #030712;
     }
 
-    /* Background Canvas & Mesh */
     #ambientCanvas {
       position: fixed;
       top: 0;
@@ -82,18 +84,18 @@
       height: 100vh;
       pointer-events: none;
       z-index: -1;
-      opacity: 0.85;
+      opacity: 0.75;
     }
 
     .bg-grid {
       position: fixed;
       inset: 0;
       background-image:
-        radial-gradient(circle at 50% 0%, rgba(45, 212, 191, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 100% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+        radial-gradient(circle at 50% 0%, rgba(0, 245, 212, 0.07) 0%, transparent 60%),
+        radial-gradient(circle at 100% 50%, rgba(14, 165, 233, 0.05) 0%, transparent 45%),
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
       background-position: 0 0, 0 0, -1px -1px, -1px -1px;
       pointer-events: none;
       z-index: -1;
@@ -110,13 +112,12 @@
     }
 
     .wrap {
-      max-width: 1020px;
+      max-width: 1040px;
       margin: 0 auto;
       padding: 0 28px;
       position: relative;
     }
 
-    /* Focus styling */
     a:focus-visible,
     button:focus-visible {
       outline: 2px solid var(--teal);
@@ -124,14 +125,13 @@
       border-radius: var(--radius-sm);
     }
 
-    /* Skip Link */
     .skip-link {
       position: absolute;
       top: -100%;
       left: 24px;
-      z-index: 1000;
+      z-index: 10000;
       background: var(--teal);
-      color: var(--bg-dark);
+      color: #030712;
       padding: 12px 20px;
       font-weight: 700;
       font-size: 14px;
@@ -143,58 +143,136 @@
       top: 16px;
     }
 
-    /* Glass Panel Utility */
     .glass-panel {
       background: var(--bg-card);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--border-card);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+      position: relative;
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /* ---------- STICKY NAVIGATION ---------- */
+    .glass-panel::before {
+      content: '+';
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(0, 245, 212, 0.3);
+      pointer-events: none;
+    }
+
+    .glass-panel::after {
+      content: '+';
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(0, 245, 212, 0.3);
+      pointer-events: none;
+    }
+
+    .glass-panel:hover {
+      border-color: var(--border-card-hover);
+      box-shadow: 0 16px 48px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 245, 212, 0.12);
+    }
+
+    .hud-ribbon {
+      background: rgba(4, 8, 18, 0.95);
+      border-bottom: 1px solid rgba(0, 245, 212, 0.22);
+      font-size: 11px;
+      color: var(--paper-muted);
+      padding: 7px 0;
+      position: relative;
+      z-index: 1001;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .hud-ribbon .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hud-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hud-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 10px var(--teal);
+      animation: hudPulse 2s infinite;
+    }
+
+    @keyframes hudPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.85); }
+    }
+
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      background: rgba(7, 11, 20, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(4, 8, 18, 0.82);
       border-bottom: 1px solid var(--line);
       transition: all 0.3s ease;
     }
 
     header.scrolled {
-      background: rgba(7, 11, 20, 0.92);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      background: rgba(3, 7, 16, 0.96);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+      border-bottom-color: rgba(0, 245, 212, 0.25);
     }
 
     nav.wrap {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 72px;
+      height: 68px;
     }
 
     .brand {
       font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: -0.02em;
+      font-weight: 800;
+      font-size: 21px;
+      letter-spacing: -0.03em;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
     }
 
     .brand span {
       color: var(--teal);
-      text-shadow: 0 0 12px var(--teal-glow);
+      text-shadow: 0 0 14px var(--teal-glow);
+    }
+
+    .brand-tag {
+      font-size: 10px;
+      background: rgba(0, 245, 212, 0.1);
+      border: 1px solid rgba(0, 245, 212, 0.3);
+      color: var(--teal);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
     }
 
     .navlinks {
       display: none;
-      gap: 32px;
-      font-size: 14px;
+      gap: 28px;
+      font-size: 13.5px;
       font-weight: 500;
     }
 
@@ -202,11 +280,13 @@
       color: var(--paper-muted);
       position: relative;
       padding: 6px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
     }
 
     .navlinks a:hover,
     .navlinks a.active {
-      color: var(--paper);
+      color: var(--teal);
     }
 
     .navlinks a::after {
@@ -215,10 +295,9 @@
       bottom: 0;
       left: 0;
       width: 0;
-      height: 2px;
+      height: 1px;
       background: var(--teal);
       transition: width 0.25s ease;
-      box-shadow: 0 0 8px var(--teal);
     }
 
     .navlinks a:hover::after,
@@ -236,11 +315,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       background: var(--bg-card);
       border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-sm);
       color: var(--paper);
       cursor: pointer;
       transition: all 0.2s ease;
@@ -260,8 +339,8 @@
     .mobile-menu {
       display: none;
       flex-direction: column;
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(20px);
+      background: rgba(4, 8, 18, 0.98);
+      backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border-card);
     }
 
@@ -270,22 +349,22 @@
     }
 
     .mobile-menu a {
-      padding: 16px 28px;
-      font-size: 15px;
+      padding: 14px 28px;
+      font-size: 14px;
       font-weight: 500;
       color: var(--paper-muted);
       border-bottom: 1px solid var(--line);
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .mobile-menu a:hover,
     .mobile-menu a.active {
       color: var(--teal);
-      background: rgba(45, 212, 191, 0.05);
+      background: rgba(0, 245, 212, 0.06);
     }
 
-    /* ---------- HERO SECTION ---------- */
     .hero {
-      padding: 90px 0 70px;
+      padding: 80px 0 65px;
       position: relative;
     }
 
@@ -298,7 +377,7 @@
 
     @media(min-width: 880px) {
       .hero-grid {
-        grid-template-columns: 1fr 240px;
+        grid-template-columns: 1fr 250px;
       }
     }
 
@@ -307,20 +386,20 @@
       align-items: center;
       gap: 10px;
       padding: 6px 14px;
-      border-radius: 30px;
+      border-radius: 4px;
       background: rgba(245, 158, 11, 0.1);
-      border: 1px solid rgba(245, 158, 11, 0.25);
-      font-size: 12px;
-      font-weight: 600;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      font-size: 11px;
+      font-weight: 700;
       color: var(--amber);
-      letter-spacing: 0.05em;
-      margin-bottom: 24px;
-      box-shadow: 0 0 20px rgba(245, 158, 11, 0.08);
+      letter-spacing: 0.06em;
+      margin-bottom: 22px;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
     }
 
     .status-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--amber);
       box-shadow: 0 0 10px var(--amber);
@@ -328,48 +407,40 @@
     }
 
     @keyframes pulse {
-
-      0%,
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-
-      50% {
-        transform: scale(1.3);
-        opacity: 0.6;
-      }
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.5; }
     }
 
     h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: clamp(32px, 4.5vw, 54px);
-      line-height: 1.12;
-      letter-spacing: -0.02em;
+      font-weight: 800;
+      font-size: clamp(32px, 4.4vw, 54px);
+      line-height: 1.14;
+      letter-spacing: -0.03em;
     }
 
     h1 .gradient-text {
-      background: linear-gradient(135deg, #2DD4BF 0%, #06B6D4 50%, #6366F1 100%);
+      background: linear-gradient(135deg, #00F5D4 0%, #0EA5E9 50%, #818CF8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(0, 245, 212, 0.2);
     }
 
     p.lede {
-      margin-top: 24px;
-      max-width: 620px;
-      font-size: 18px;
-      color: var(--paper-muted);
+      margin-top: 22px;
+      max-width: 640px;
+      font-size: 17px;
+      color: #CBD5E1;
       font-weight: 400;
       line-height: 1.7;
     }
 
     .hero-meta {
-      margin-top: 28px;
+      margin-top: 26px;
       display: flex;
       flex-wrap: wrap;
       gap: 12px 24px;
-      font-size: 13.5px;
+      font-size: 13px;
       color: var(--paper-muted);
     }
 
@@ -380,15 +451,15 @@
     }
 
     .hero-meta-item svg {
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       stroke: var(--teal);
     }
 
     .hero-cta {
-      margin-top: 36px;
+      margin-top: 34px;
       display: flex;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
@@ -396,26 +467,30 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 12px 24px;
-      border-radius: var(--radius-md);
-      font-size: 14px;
+      gap: 9px;
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       border: 1px solid transparent;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     .btn.primary {
-      background: linear-gradient(135deg, #2DD4BF 0%, #06B6D4 100%);
-      color: var(--bg-dark);
+      background: linear-gradient(135deg, #00F5D4 0%, #0EA5E9 100%);
+      color: #030712;
+      font-weight: 700;
       box-shadow: 0 4px 20px var(--teal-glow);
     }
 
     .btn.primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(45, 212, 191, 0.4);
-      filter: brightness(1.1);
+      box-shadow: 0 8px 28px rgba(0, 245, 212, 0.45);
+      filter: brightness(1.08);
     }
 
     .btn.ghost {
@@ -428,13 +503,13 @@
       transform: translateY(-2px);
       border-color: var(--teal);
       color: var(--teal);
-      background: rgba(45, 212, 191, 0.08);
+      background: rgba(0, 245, 212, 0.08);
+      box-shadow: 0 4px 18px rgba(0, 245, 212, 0.15);
     }
 
-    /* Portrait Frame Card */
     .portrait-wrapper {
       position: relative;
-      max-width: 220px;
+      max-width: 240px;
       margin: 0 auto;
     }
 
@@ -446,132 +521,101 @@
 
     .portrait-card {
       position: relative;
-      border-radius: var(--radius-lg);
-      padding: 8px;
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
-      border: 1px solid var(--border-card);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-
-    .portrait-card:hover {
-      transform: translateY(-4px) scale(1.02);
-      border-color: var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 6px;
+      background: var(--bg-card);
+      border: 1px solid rgba(0, 245, 212, 0.3);
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 245, 212, 0.12);
+      overflow: hidden;
     }
 
     .portrait-card img {
       width: 100%;
       height: auto;
-      display: block;
-      border-radius: calc(var(--radius-lg) - 4px);
-      filter: saturate(1.05) contrast(1.02);
+      aspect-ratio: 4/5;
       object-fit: cover;
+      border-radius: var(--radius-sm);
+      display: block;
+      filter: contrast(1.05) saturate(0.95);
+      transition: filter 0.3s ease;
     }
 
-    .portrait-glow {
-      position: absolute;
-      inset: -2px;
-      border-radius: calc(var(--radius-lg) + 2px);
-      background: linear-gradient(135deg, var(--teal), transparent 50%, var(--amber));
-      z-index: -1;
-      opacity: 0.35;
-      filter: blur(10px);
-      transition: opacity 0.3s ease;
-    }
-
-    .portrait-card:hover .portrait-glow {
-      opacity: 0.75;
+    .portrait-card:hover img {
+      filter: contrast(1.1) saturate(1.05);
     }
 
     .portrait-tag {
+      margin-top: 8px;
+      padding: 6px 10px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      margin-top: 10px;
-      padding: 0 4px;
-      font-size: 10.5px;
-      color: var(--paper-muted);
-      font-weight: 500;
+      font-size: 10px;
+      color: var(--teal);
+      border-top: 1px solid rgba(0, 245, 212, 0.15);
+      font-weight: 700;
+      letter-spacing: 0.05em;
     }
 
-    /* Stats Grid */
     .hero-stats {
-      margin-top: 54px;
+      margin-top: 36px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px;
-      padding-top: 32px;
-      border-top: 1px solid var(--line);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
     }
 
     .stat-card {
-      padding: 18px 20px;
-      border-radius: var(--radius-md);
-      background: rgba(15, 23, 42, 0.4);
+      background: rgba(6, 12, 24, 0.7);
       border: 1px solid var(--border-card);
-      transition: transform 0.2s, border-color 0.2s;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      position: relative;
     }
 
-    .stat-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--border-accent);
+    .stat-card::before {
+      content: '//';
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: rgba(0, 245, 212, 0.3);
     }
 
     .stat-num {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 32px;
-      font-weight: 700;
+      font-size: clamp(22px, 3.2vw, 32px);
+      font-weight: 800;
       color: var(--teal);
-      line-height: 1;
-      margin-bottom: 6px;
+      line-height: 1.1;
+      text-shadow: 0 0 14px var(--teal-glow);
     }
 
     .stat-label {
-      font-size: 13px;
+      font-size: 11.5px;
       color: var(--paper-muted);
-      font-weight: 500;
+      margin-top: 6px;
+      line-height: 1.35;
+      font-family: 'JetBrains Mono', monospace;
     }
 
-    /* ---------- SUMMARY STRIP ---------- */
     .summary {
-      margin: 40px 0 60px;
-      padding: 32px;
-      border-radius: var(--radius-lg);
+      margin: 10px 0 50px;
+      padding: 22px 28px;
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--teal);
     }
 
     .summary p {
-      font-size: 16.5px;
-      color: #CBD5E1;
+      font-size: 15px;
+      color: #E2E8F0;
       line-height: 1.7;
-      max-width: 860px;
     }
 
-    /* ---------- ROUTE RAIL & SECTIONS ---------- */
     section {
-      padding: 60px 0;
+      padding: 70px 0;
       position: relative;
     }
 
-    .section-head {
-      margin-bottom: 36px;
-    }
-
-    .section-head h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(24px, 3.2vw, 34px);
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--paper);
-      line-height: 1.2;
-    }
-
-    .section-head .sub {
-      color: var(--paper-muted);
-      font-size: 15px;
-      margin-top: 8px;
-    }
-
-    /* Signature Waypoint Rail */
     .rail-container {
       position: relative;
       padding-left: 48px;
@@ -580,8 +624,8 @@
     .rail-line {
       position: absolute;
       left: 16px;
-      top: 14px;
-      bottom: 14px;
+      top: 10px;
+      bottom: 10px;
       width: 2px;
       background: rgba(255, 255, 255, 0.08);
     }
@@ -589,12 +633,12 @@
     .rail-progress {
       position: absolute;
       left: 16px;
-      top: 14px;
+      top: 10px;
       width: 2px;
       height: 0%;
-      background: linear-gradient(to bottom, var(--teal), var(--cyan));
-      box-shadow: 0 0 10px var(--teal), 0 0 20px rgba(45, 212, 191, 0.5);
-      transition: height 0.08s ease-out;
+      background: linear-gradient(180deg, #00F5D4, #0EA5E9);
+      box-shadow: 0 0 12px #00F5D4;
+      transition: height 0.1s linear;
     }
 
     .waypoint-node {
@@ -605,366 +649,414 @@
       height: 16px;
       border-radius: 50%;
       background: var(--bg-dark);
-      border: 3px solid var(--teal);
-      box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.15);
-      z-index: 5;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 2px solid rgba(0, 245, 212, 0.4);
+      z-index: 2;
+      transition: all 0.3s ease;
     }
 
     .waypoint-node.active {
+      border-color: var(--teal);
       background: var(--teal);
-      border-color: var(--bg-dark);
-      box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.25), 0 0 20px var(--teal), 0 0 35px var(--teal);
-      transform: scale(1.3);
+      box-shadow: 0 0 16px var(--teal);
     }
 
-    @media(max-width: 720px) {
-      .rail-container {
-        padding-left: 0;
-      }
-
-      .rail-line,
-      .rail-progress,
-      .waypoint-node {
-        display: none;
-      }
+    .section-head {
+      margin-bottom: 34px;
     }
 
-    /* Reveal Animations */
-    [data-reveal] {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    .section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--teal);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+      display: block;
     }
 
-    [data-reveal].in-view {
-      opacity: 1;
-      transform: translateY(0);
+    .section-head h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: clamp(26px, 3.5vw, 36px);
+      letter-spacing: -0.02em;
+      color: var(--paper);
     }
 
-    /* ---------- PROJECTS ---------- */
+    .section-head .sub {
+      color: var(--paper-muted);
+      font-size: 15px;
+      margin-top: 6px;
+    }
+
     .project-card {
+      padding: 30px;
       border-radius: var(--radius-lg);
-      padding: 32px;
-      margin-bottom: 28px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .project-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--border-accent);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      margin-bottom: 36px;
+      border-left: 3px solid var(--teal);
     }
 
     .project-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      display: inline-block;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.08em;
       color: var(--teal);
-      margin-bottom: 14px;
-      text-transform: uppercase;
-    }
-
-    .project-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
+      letter-spacing: 0.05em;
     }
 
     .project-head h3 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 24px;
+      font-size: clamp(20px, 2.4vw, 24px);
       font-weight: 700;
+      color: var(--paper);
+      margin: 6px 0 12px 0;
     }
 
     .project-bullets {
-      margin: 16px 0 20px 0;
       list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      margin: 16px 0;
     }
 
     .project-bullets li {
       position: relative;
-      padding-left: 24px;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 14.5px;
       color: #CBD5E1;
-      font-size: 15px;
+      line-height: 1.6;
     }
 
     .project-bullets li::before {
       content: '▹';
       position: absolute;
       left: 0;
-      top: 0;
       color: var(--teal);
-      font-weight: 700;
       font-size: 16px;
+      line-height: 1.3;
     }
 
     .tags-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 24px;
+      margin-top: 18px;
     }
 
     .tag-chip {
-      font-size: 12px;
-      color: var(--paper-muted);
-      font-weight: 500;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 4px 12px;
-      transition: all 0.2s ease;
-    }
-
-    .project-card:hover .tag-chip {
-      border-color: rgba(45, 212, 191, 0.2);
-      color: var(--paper);
+      font-size: 11.5px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(0, 245, 212, 0.06);
+      border: 1px solid rgba(0, 245, 212, 0.2);
+      color: #E2E8F0;
     }
 
     .live-footer {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 16px;
-      border-top: 1px dashed var(--line);
+      gap: 14px;
+      margin-top: 24px;
       padding-top: 18px;
-      margin-top: 8px;
+      border-top: 1px solid var(--line);
     }
 
     .live-indicator {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: #4ADE80;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #34D399;
+      letter-spacing: 0.04em;
     }
 
-    .live-indicator .pulse-green {
-      width: 8px;
-      height: 8px;
+    .pulse-green {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: #4ADE80;
-      box-shadow: 0 0 10px #4ADE80;
-      animation: pulse 1.8s infinite;
+      background: #34D399;
+      box-shadow: 0 0 10px #34D399;
+      animation: pulse 2s infinite;
     }
 
     .demo-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--amber);
       padding: 8px 16px;
       border-radius: var(--radius-sm);
-      background: rgba(245, 158, 11, 0.08);
-      border: 1px solid rgba(245, 158, 11, 0.2);
+      font-size: 12.5px;
+      font-weight: 600;
+      background: rgba(0, 245, 212, 0.1);
+      border: 1px solid rgba(0, 245, 212, 0.35);
+      color: var(--teal);
       transition: all 0.2s ease;
     }
 
     .demo-btn:hover {
-      background: rgba(245, 158, 11, 0.18);
-      color: #FFD08A;
-      transform: translateX(3px);
+      background: var(--teal);
+      color: #030712;
+      box-shadow: 0 4px 18px var(--teal-glow);
     }
 
     .demo-btn svg {
       width: 14px;
       height: 14px;
-      transition: transform 0.2s ease;
     }
 
-    .demo-btn:hover svg {
-      transform: translate(2px, -2px);
-    }
-
-    /* ---------- SKILLS CATEGORY FILTER ---------- */
-    .skill-filter-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-
-    .tab-btn {
-      padding: 8px 18px;
-      border-radius: 30px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      color: var(--paper-muted);
-      transition: all 0.2s ease;
-    }
-
-    .tab-btn:hover,
-    .tab-btn.active {
-      background: var(--teal);
-      color: var(--bg-dark);
-      border-color: var(--teal);
-      box-shadow: 0 4px 15px var(--teal-glow);
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 18px;
-    }
-
-    .skill-card {
-      padding: 18px 20px;
+    .sim-engine-box {
+      background: rgba(4, 9, 20, 0.85);
+      border: 1px solid rgba(0, 245, 212, 0.28);
       border-radius: var(--radius-md);
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      transition: all 0.25s ease;
+      padding: 16px;
+      margin: 18px 0 16px;
+      position: relative;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .sim-engine-header {
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .skill-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--border-accent);
-      background: var(--bg-card-hover);
-    }
-
-    .skill-card-cat {
-      font-size: 10.5px;
+    .sim-engine-title {
+      font-size: 11px;
       font-weight: 700;
-      color: var(--amber);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.03em;
     }
 
-    .skill-card-title {
-      font-size: 16px;
-      font-weight: 600;
+    .sim-btn-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .sim-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--paper-muted);
+      font-size: 11.5px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .sim-btn:hover, .sim-btn.active {
+      background: rgba(0, 245, 212, 0.15);
+      border-color: var(--teal);
       color: var(--paper);
     }
 
-    /* ---------- EDUCATION TIMELINE ---------- */
+    .sim-readout-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .sim-readout-card {
+      background: rgba(8, 16, 32, 0.7);
+      border: 1px solid rgba(0, 245, 212, 0.12);
+      border-radius: 4px;
+      padding: 10px;
+    }
+
+    .sim-readout-lbl {
+      font-size: 9.5px;
+      color: var(--paper-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .sim-readout-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--paper);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .sim-slider {
+      flex: 1;
+      accent-color: var(--teal);
+      cursor: pointer;
+    }
+
     .timeline {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
     }
 
     .tl-card {
       padding: 24px 28px;
-      border-radius: var(--radius-lg);
-      display: grid;
-      grid-template-columns: 130px 1fr;
-      gap: 24px;
-      align-items: start;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-
-    .tl-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--border-accent);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--teal);
     }
 
     .tl-date {
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 11px;
+      font-weight: 700;
       color: var(--teal);
-      letter-spacing: 0.05em;
-      padding-top: 4px;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
     }
 
     .tl-content h3 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 19px;
       font-weight: 700;
-      margin-bottom: 4px;
+      color: var(--paper);
     }
 
     .tl-org {
-      color: var(--paper-muted);
-      font-size: 14.5px;
+      color: #94A3B8;
+      font-size: 14px;
+      margin-top: 2px;
     }
 
     .tl-highlight {
       display: inline-block;
       margin-top: 10px;
-      padding: 4px 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 10px;
       border-radius: 4px;
-      background: rgba(45, 212, 191, 0.1);
-      border: 1px solid rgba(45, 212, 191, 0.2);
+      background: rgba(0, 245, 212, 0.1);
+      border: 1px solid rgba(0, 245, 212, 0.28);
       color: var(--teal);
-      font-size: 13px;
+    }
+
+    .skill-filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tab-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      color: var(--paper-muted);
+      padding: 7px 16px;
+      border-radius: 4px;
+      font-size: 12.5px;
       font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'JetBrains Mono', monospace;
     }
 
-    @media(max-width: 600px) {
-      .tl-card {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        padding: 20px;
-      }
+    .tab-btn:hover,
+    .tab-btn.active {
+      background: rgba(0, 245, 212, 0.15);
+      border-color: var(--teal);
+      color: var(--teal);
+      box-shadow: 0 0 16px rgba(0, 245, 212, 0.15);
     }
 
-    /* ---------- CONTACT SECTION ---------- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 12px;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+
+    .skill-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.6), 0 0 16px rgba(0, 245, 212, 0.15);
+    }
+
+    .skill-card-cat {
+      font-size: 10px;
+      color: var(--paper-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .skill-card-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--paper);
+    }
+
     .contact-box {
-      padding: 48px;
+      padding: 44px;
       border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(6, 182, 212, 0.05));
-      position: relative;
-      overflow: hidden;
+      text-align: left;
+      border-left: 4px solid var(--teal);
     }
 
     .contact-box h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: 700;
-      max-width: 580px;
-      line-height: 1.15;
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
     }
 
     .contact-box p {
-      color: var(--paper-muted);
-      font-size: 17px;
-      margin-top: 16px;
-      max-width: 520px;
+      margin: 12px 0 28px 0;
+      color: #CBD5E1;
+      max-width: 580px;
+      font-size: 16px;
     }
 
     .contact-actions {
-      margin-top: 36px;
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 12px;
     }
 
-    /* Toast Notification */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 32px 0 44px;
+      font-size: 12.5px;
+      color: var(--paper-muted);
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
     .toast {
       position: fixed;
       bottom: 30px;
       right: 30px;
       z-index: 1000;
       background: var(--teal);
-      color: var(--bg-dark);
-      padding: 14px 22px;
-      border-radius: var(--radius-md);
+      color: #030712;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
       font-weight: 700;
-      font-size: 14px;
-      box-shadow: 0 10px 30px rgba(45, 212, 191, 0.4);
+      font-size: 13.5px;
+      box-shadow: 0 10px 30px rgba(0, 245, 212, 0.4);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -980,165 +1072,23 @@
       pointer-events: auto;
     }
 
-    /* ---------- FOOTER ---------- */
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 32px 0 48px;
-      font-size: 13px;
-      color: var(--paper-muted);
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .footer-wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
+    [data-reveal].in-view {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* ---------- TELEMETRY HUD RIBBON ---------- */
-    .hud-ribbon {
-      background: rgba(8, 14, 28, 0.9);
-      border-bottom: 1px solid rgba(45, 212, 191, 0.2);
-      font-size: 11px;
-      color: var(--paper-muted);
-      padding: 6px 0;
-      position: relative;
-      z-index: 1001;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .hud-ribbon .wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .hud-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hud-pulse {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--teal);
-      box-shadow: 0 0 10px var(--teal);
-      animation: hudPulse 2s infinite;
-    }
-
-    @keyframes hudPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    /* ---------- INTERACTIVE SIMULATOR ENGINES ---------- */
-    .sim-engine-box {
-      background: rgba(6, 11, 23, 0.75);
-      border: 1px solid rgba(45, 212, 191, 0.25);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      margin: 18px 0 14px;
-      position: relative;
-      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .sim-engine-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .sim-engine-title {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--teal);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .sim-btn-group {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .sim-btn {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--paper-muted);
-      font-size: 12px;
-      padding: 5px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-family: inherit;
-    }
-
-    .sim-btn:hover, .sim-btn.active {
-      background: rgba(45, 212, 191, 0.15);
-      border-color: var(--teal);
-      color: var(--paper);
-    }
-
-    .sim-readout-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px;
-    }
-
-    .sim-readout-card {
-      background: rgba(15, 23, 42, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 6px;
-      padding: 10px;
-    }
-
-    .sim-readout-lbl {
-      font-size: 10px;
-      color: var(--paper-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-    }
-
-    .sim-readout-val {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--paper);
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .sim-slider-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .sim-slider {
-      flex: 1;
-      accent-color: var(--teal);
-      cursor: pointer;
-    }
-
-    /* ---------- PROJECT ARCHITECTURE MODAL ---------- */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(4, 8, 16, 0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: rgba(3, 7, 18, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       z-index: 10000;
       display: flex;
       align-items: center;
@@ -1155,14 +1105,14 @@
     }
 
     .modal-container {
-      background: #0B1324;
-      border: 1px solid rgba(45, 212, 191, 0.35);
+      background: #060B18;
+      border: 1px solid rgba(0, 245, 212, 0.4);
       border-radius: var(--radius-lg);
       width: 100%;
-      max-width: 820px;
+      max-width: 840px;
       max-height: 88vh;
       overflow-y: auto;
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 35px rgba(45, 212, 191, 0.15);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 245, 212, 0.15);
       transform: scale(0.94) translateY(20px);
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
@@ -1175,7 +1125,7 @@
     .modal-header {
       position: sticky;
       top: 0;
-      background: rgba(11, 19, 36, 0.96);
+      background: rgba(6, 11, 24, 0.96);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-card);
       padding: 18px 24px;
@@ -1183,13 +1133,6 @@
       align-items: center;
       justify-content: space-between;
       z-index: 10;
-    }
-
-    .modal-header h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 19px;
-      font-weight: 700;
-      color: var(--paper);
     }
 
     .modal-close {
@@ -1235,20 +1178,11 @@
     }
 
     .modal-box {
-      background: rgba(15, 23, 42, 0.6);
+      background: rgba(8, 15, 30, 0.7);
       border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-sm);
       padding: 14px 18px;
       margin-bottom: 14px;
-    }
-
-    .modal-box ul {
-      padding-left: 18px;
-      margin-top: 6px;
-    }
-
-    .modal-box li {
-      margin-bottom: 4px;
     }
   </style>
 </head>
@@ -1260,7 +1194,7 @@
 
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- TELEMETRY HUD TOP BAR -->
+  <!-- TOP TELEMETRY HUD RIBBON -->
   <div class="hud-ribbon mono">
     <div class="wrap">
       <div class="hud-item">
@@ -1281,15 +1215,16 @@
   <header id="header">
     <nav class="wrap">
       <a href="#" class="brand" aria-label="Kona Aravind Ranga Reddy Home">
-        KAR<span>R</span>.
+        KARR<span>.</span>
+        <span class="brand-tag mono">AI/ML ARCHITECT</span>
       </a>
       <div class="navlinks" id="navLinks">
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#contact">Contact</a>
+        <a href="#projects">// 01. PROJECTS</a>
+        <a href="#experience">// 02. EXPERIENCE</a>
+        <a href="#skills">// 03. SKILLS</a>
+        <a href="#education">// 04. EDUCATION</a>
+        <a href="#certifications">// 05. CERTS</a>
+        <a href="#contact">// 06. CONTACT</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu"
         aria-label="Open Navigation Menu">
@@ -1300,12 +1235,12 @@
       </button>
     </nav>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#contact">Contact</a>
+      <a href="#projects">// 01. PROJECTS</a>
+      <a href="#experience">// 02. EXPERIENCE</a>
+      <a href="#skills">// 03. SKILLS</a>
+      <a href="#education">// 04. EDUCATION</a>
+      <a href="#certifications">// 05. CERTS</a>
+      <a href="#contact">// 06. CONTACT</a>
     </div>
   </header>
 
@@ -1318,13 +1253,13 @@
           <div data-reveal>
             <div class="status-pill mono">
               <span class="status-dot"></span>
-              OPEN TO SOFTWARE ENGINEERING &amp; AI/ML INTERNSHIPS
+              CLEARANCE: AVAILABLE FOR SDE &amp; AI/ML INTERNSHIPS
             </div>
             <h1>
               Kona Aravind Ranga Reddy builds software that <span class="gradient-text">ships</span>, not just compiles.
             </h1>
             <p class="lede">
-              Computer Science &amp; AI/ML undergraduate with hands-on experience building and independently rearchitecting full-stack web applications, integrating multimodal AI (Google Gemini Vision), geospatial algorithms, and concurrency-safe database design. Team lead on two deployed projects, taking each from initial build to a solo-extended, production-hosted version.
+              Computer Science &amp; AI/ML undergraduate with hands-on experience building and independently rearchitecting full-stack web applications, integrating multimodal AI (Google Gemini Vision), geospatial algorithms, and concurrency-safe database design.
             </p>
 
             <div class="hero-meta mono">
@@ -1354,13 +1289,13 @@
             <div class="hero-cta">
               <a class="btn primary" href="#projects">
                 <span>See Live Projects</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
               </a>
               <a class="btn ghost" href="Aravind_Kona_Resume.pdf" target="_blank" rel="noopener"
                 download="Kona_Aravind_Ranga_Reddy_Resume.pdf" title="View or Download Resume PDF">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                   <polyline points="14 2 14 8 20 8" />
                   <line x1="16" y1="13" x2="8" y2="13" />
@@ -1369,7 +1304,7 @@
                 <span>Resume PDF</span>
               </a>
               <button class="btn ghost" id="copyEmailBtn" aria-label="Copy Email Address">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="9" y="9" width="13" height="13" rx="2" />
                   <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
                 </svg>
@@ -1383,26 +1318,25 @@
             <div class="hero-stats">
               <div class="stat-card">
                 <div class="stat-num" data-target="2">0</div>
-                <div class="stat-label">Production Deployed Apps</div>
+                <div class="stat-label">PRODUCTION APPS</div>
               </div>
               <div class="stat-card">
                 <div class="stat-num" data-target="9.27" data-decimal="2">0.00</div>
-                <div class="stat-label">CGPA / 10 at GITAM</div>
+                <div class="stat-label">CGPA / 10 (GITAM)</div>
               </div>
               <div class="stat-card">
                 <div class="stat-num" data-target="97.29" data-decimal="2">0.00</div>
-                <div class="stat-label">Diploma % (Rank 4/66)</div>
+                <div class="stat-label">DIPLOMA (RANK 4/66)</div>
               </div>
             </div>
           </div>
 
           <div class="portrait-wrapper" data-reveal>
-            <div class="portrait-glow"></div>
             <div class="portrait-card">
               <img src="photo.jpg" alt="Kona Aravind Ranga Reddy" width="220" height="275" loading="eager">
               <div class="portrait-tag mono">
-                <span>BANGALORE, IN</span>
-                <span>KARR.</span>
+                <span>BANGALORE NODE</span>
+                <span>KARR.DEV</span>
               </div>
             </div>
           </div>
@@ -1410,11 +1344,10 @@
       </div>
     </section>
 
-    <!-- SUMMARY STRIP -->
     <div class="wrap" data-reveal>
       <div class="summary glass-panel">
         <p>
-          Computer Science &amp; AI/ML undergraduate at GITAM, Bangalore (3rd Year, <strong>9.27 / 10 CGPA</strong>) with a <strong>97.29% Diploma</strong> rank (4th of 66). Proven experience leading 6-person teams on two production-deployed platforms, integrating multimodal AI (Google Gemini Vision), geospatial GIS algorithms (Haversine distance), and concurrency-safe ACID database architectures. Seeking a <strong>Software Engineering or AI/ML Internship</strong>.
+          Computer Science &amp; AI/ML undergraduate at GITAM, Bangalore (3rd Year, <strong>9.27 / 10 CGPA</strong>) with a <strong>97.29% Diploma</strong> rank (4th of 66). Proven experience leading 6-person teams on two production-deployed platforms, integrating multimodal AI (Google Gemini Vision), geospatial GIS algorithms, and concurrency-safe ACID database architectures.
         </p>
       </div>
     </div>
@@ -1428,6 +1361,7 @@
           <div class="waypoint-node" id="node-projects"></div>
 
           <div class="section-head" data-reveal>
+            <span class="section-tag">// 01. PRODUCTION_DEPLOYMENTS</span>
             <h2>Things I've Deployed</h2>
             <div class="sub">Production web applications built with 6-person teams as team lead, then independently rearchitected and extended solo.</div>
           </div>
@@ -1435,8 +1369,8 @@
           <!-- CivicConnect Card -->
           <div class="project-card glass-panel" data-reveal>
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 14px;">
-              <div class="project-badge mono" style="margin-bottom:0;">● TEAM OF 6 · TEAM LEAD</div>
-              <span class="mono" style="font-size:11px; font-weight:700; color:var(--teal); background:rgba(45,212,191,0.1); padding:3px 10px; border-radius:12px; border:1px solid rgba(45,212,191,0.25);">Google Gemini Vision AI &amp; GIS</span>
+              <div class="project-badge mono">● TEAM OF 6 · TEAM LEAD</div>
+              <span class="mono" style="font-size:11px; font-weight:700; color:var(--teal); background:rgba(0,245,212,0.1); padding:3px 10px; border-radius:4px; border:1px solid rgba(0,245,212,0.28);">Google Gemini Vision AI &amp; GIS</span>
             </div>
             <div class="project-head">
               <h3>CivicConnect — AI-Powered Smart Municipal Intelligence Platform</h3>
@@ -1501,13 +1435,13 @@
                 <span class="pulse-green"></span> DEPLOYED ON RAILWAY
               </div>
               <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-                <button class="demo-btn mono" onclick="openModal('civicconnectModal')" style="background: rgba(45, 212, 191, 0.1); border-color: rgba(45, 212, 191, 0.3); color: var(--teal); cursor: pointer;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <button class="demo-btn mono" onclick="openModal('civicconnectModal')" style="cursor: pointer;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                   <span>Architecture Deep Dive</span>
                 </button>
                 <a class="demo-btn mono" href="https://github.com/aravindkona18090/CivicConnect" target="_blank" rel="noopener"
                   style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: var(--paper);">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path
                       d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                   </svg>
@@ -1526,8 +1460,8 @@
           <!-- FlexiRide Card -->
           <div class="project-card glass-panel" data-reveal>
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 14px;">
-              <div class="project-badge mono" style="margin-bottom:0;">● TEAM OF 6 · TEAM LEAD</div>
-              <span class="mono" style="font-size:11px; font-weight:700; color:var(--teal); background:rgba(45,212,191,0.1); padding:3px 10px; border-radius:12px; border:1px solid rgba(45,212,191,0.25);">9.6 / 10 Benchmark Score</span>
+              <div class="project-badge mono">● TEAM OF 6 · TEAM LEAD</div>
+              <span class="mono" style="font-size:11px; font-weight:700; color:var(--teal); background:rgba(0,245,212,0.1); padding:3px 10px; border-radius:4px; border:1px solid rgba(0,245,212,0.28);">9.6 / 10 Benchmark Score</span>
             </div>
             <div class="project-head">
               <h3>FlexiRide — Full-Stack Campus Ride-Sharing Platform</h3>
@@ -1595,13 +1529,13 @@
                 <span class="pulse-green"></span> DEPLOYED ON RAILWAY
               </div>
               <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-                <button class="demo-btn mono" onclick="openModal('flexirideModal')" style="background: rgba(45, 212, 191, 0.1); border-color: rgba(45, 212, 191, 0.3); color: var(--teal); cursor: pointer;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <button class="demo-btn mono" onclick="openModal('flexirideModal')" style="cursor: pointer;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                   <span>Architecture Deep Dive</span>
                 </button>
                 <a class="demo-btn mono" href="https://github.com/aravindkona18090/flexiride" target="_blank" rel="noopener"
                   style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: var(--paper);">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path
                       d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                   </svg>
@@ -1630,6 +1564,7 @@
           <div class="waypoint-node" id="node-experience"></div>
 
           <div class="section-head" data-reveal>
+            <span class="section-tag">// 02. INDUSTRY_DOSSIER</span>
             <h2>Work Experience</h2>
             <div class="sub">Internships and professional industry contributions.</div>
           </div>
@@ -1640,7 +1575,7 @@
               <div class="tl-content">
                 <h3>Data Analyst Intern</h3>
                 <div class="tl-org">InAmigos Foundation</div>
-                <div class="tl-highlight mono" style="background: rgba(45, 212, 191, 0.1); border-color: rgba(45, 212, 191, 0.25); color: var(--teal);">
+                <div class="tl-highlight mono">
                   ● Data Analysis &amp; Social Impact
                 </div>
                 <ul class="project-bullets" style="margin-top: 14px; margin-bottom: 14px;">
@@ -1673,6 +1608,7 @@
           <div class="waypoint-node" id="node-skills"></div>
 
           <div class="section-head" data-reveal>
+            <span class="section-tag">// 03. TECHNICAL_ARSENAL</span>
             <h2>Technical Skills &amp; Toolkit</h2>
             <div class="sub">Languages, frameworks, and core engineering concepts I use to build and architect systems.</div>
           </div>
@@ -1819,6 +1755,7 @@
           <div class="waypoint-node" id="node-education"></div>
 
           <div class="section-head" data-reveal>
+            <span class="section-tag">// 04. ACADEMIC_CREDENTIALS</span>
             <h2>Education</h2>
             <div class="sub">Academic degrees and current engineering coursework.</div>
           </div>
@@ -1868,6 +1805,7 @@
           <div class="waypoint-node" id="node-certifications"></div>
 
           <div class="section-head" data-reveal>
+            <span class="section-tag">// 05. CERTIFICATION_SIMULATIONS</span>
             <h2>Certifications &amp; Simulations</h2>
             <div class="sub">Industry job simulations and practical credentials.</div>
           </div>
@@ -1902,8 +1840,8 @@
           <div class="rail-progress"></div>
           <div class="waypoint-node" id="node-contact"></div>
           <div class="contact-box glass-panel" data-reveal>
-            <div class="mono" style="color: var(--teal); font-weight: 600; margin-bottom: 12px; font-size: 13px;">
-              DESTINATION — GET IN TOUCH</div>
+            <div class="mono" style="color: var(--teal); font-weight: 700; margin-bottom: 10px; font-size: 11.5px; letter-spacing:0.06em;">
+              // 06. DISPATCH_TRANSMISSION — GET IN TOUCH</div>
             <h2>Let's build software that ships.</h2>
             <p>
               Open to internships and entry-level positions in Software Engineering, AI/ML, or Full-Stack Development.
@@ -1934,17 +1872,17 @@
     <div class="wrap">
       <div class="footer-wrap mono">
         <span>&copy; 2026 KONA ARAVIND RANGA REDDY</span>
-        <span>BANGALORE, KARNATAKA, INDIA</span>
+        <span>BANGALORE NODE: 12.9716° N, 77.5946° E</span>
       </div>
     </div>
   </footer>
 
   <!-- TOAST NOTIFICATION -->
-  <div id="toast" class="toast">
+  <div id="toast" class="toast mono">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
       <polyline points="20 6 9 17 4 12" />
     </svg>
-    <span>Email address copied to clipboard!</span>
+    <span>Email copied to clipboard!</span>
   </div>
 
   <script>
@@ -1969,10 +1907,10 @@
         reset() {
           this.x = Math.random() * width;
           this.y = Math.random() * height;
-          this.vx = (Math.random() - 0.5) * 0.4;
-          this.vy = (Math.random() - 0.5) * 0.4;
-          this.size = Math.random() * 2 + 1;
-          this.alpha = Math.random() * 0.4 + 0.1;
+          this.vx = (Math.random() - 0.5) * 0.35;
+          this.vy = (Math.random() - 0.5) * 0.35;
+          this.size = Math.random() * 2 + 0.8;
+          this.alpha = Math.random() * 0.35 + 0.1;
         }
         update() {
           this.x += this.vx;
@@ -1980,14 +1918,14 @@
           if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
         }
         draw() {
-          ctx.fillStyle = `rgba(45, 212, 191, ${this.alpha})`;
+          ctx.fillStyle = `rgba(0, 245, 212, ${this.alpha})`;
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
           ctx.fill();
         }
       }
 
-      const count = Math.min(Math.floor(window.innerWidth / 20), 50);
+      const count = Math.min(Math.floor(window.innerWidth / 22), 50);
       for (let i = 0; i < count; i++) particles.push(new Particle());
 
       function animate() {
@@ -2039,7 +1977,6 @@
       function update(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        // easeOutCubic
         const ease = 1 - Math.pow(1 - progress, 3);
         const currentVal = start + (target - start) * ease;
 
@@ -2100,7 +2037,6 @@
         const navLink = document.querySelector(`.navlinks a[href="#${id}"]`);
         const mobileNavLink = document.querySelector(`.mobile-menu a[href="#${id}"]`);
 
-        // Active state check for section in view
         const isActive = (scrollPos >= secTop && scrollPos < secTop + secHeight);
 
         if (navLink) {
@@ -2112,7 +2048,6 @@
           else mobileNavLink.classList.remove('active');
         }
 
-        // Calculate fill progress percentage for this section's laser rail
         let progress = 0;
         if (scrollPos > secTop) {
           progress = Math.min(100, Math.max(0, ((scrollPos - secTop) / (secHeight * 0.85)) * 100));
@@ -2122,7 +2057,6 @@
           progressEl.style.height = `${progress}%`;
         }
 
-        // Activate node laser glow when section progress reaches or is active
         if (nodeEl) {
           if (progress > 5 || isActive) {
             nodeEl.classList.add('active');
@@ -2279,7 +2213,6 @@
       const distLbl = document.getElementById('simDistLbl');
       if (distLbl) distLbl.textContent = `${dist} km`;
 
-      // Marginal Tiered Bike Pricing Formula
       let baseFare = 10;
       let marginalCost = 0;
       let currentRate = 3.00;
@@ -2330,7 +2263,6 @@
       }
     }
 
-    // Close modal on backdrop click or ESC key
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
       overlay.addEventListener('click', (e) => {
         if (e.target === overlay) {
@@ -2399,7 +2331,7 @@
 
         <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
           <a class="demo-btn mono" href="https://github.com/aravindkona18090/flexiride" target="_blank" rel="noopener" style="font-size:12px;">GitHub Repo</a>
-          <a class="demo-btn mono" href="https://flexiride.up.railway.app/" target="_blank" rel="noopener" style="font-size:12px; background:var(--teal); color:var(--bg-dark);">Live Railway Demo ↗</a>
+          <a class="demo-btn mono" href="https://flexiride.up.railway.app/" target="_blank" rel="noopener" style="font-size:12px; background:var(--teal); color:#030712;">Live Railway Demo ↗</a>
         </div>
 
       </div>
@@ -2444,7 +2376,7 @@
 
         <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
           <a class="demo-btn mono" href="https://github.com/aravindkona18090/CivicConnect" target="_blank" rel="noopener" style="font-size:12px;">GitHub Repo</a>
-          <a class="demo-btn mono" href="https://civicconnect.up.railway.app/" target="_blank" rel="noopener" style="font-size:12px; background:var(--teal); color:var(--bg-dark);">Live Railway Demo ↗</a>
+          <a class="demo-btn mono" href="https://civicconnect.up.railway.app/" target="_blank" rel="noopener" style="font-size:12px; background:var(--teal); color:#030712;">Live Railway Demo ↗</a>
         </div>
 
       </div>
