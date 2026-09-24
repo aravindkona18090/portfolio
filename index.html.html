@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kona Aravind Ranga Reddy — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B1B2E;
+    --bg-raise: #0F2340;
+    --grid: #1E3A5F;
+    --paper: #EDF2F7;
+    --muted: #7C93B3;
+    --amber: #FFB84D;
+    --teal: #5EEAD4;
+    --line: #274a72;
+    --radius: 3px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: -1px -1px;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--amber); color:var(--bg); }
+  a{ color:inherit; text-decoration:none; }
+
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+    position:relative;
+  }
+
+  /* ---------- ROUTE RAIL (signature element) ---------- */
+  .rail{
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:2px;
+    background-image: linear-gradient(var(--line) 60%, transparent 0%);
+    background-size: 2px 10px;
+    background-repeat: repeat-y;
+  }
+  .waypoint{
+    position:relative;
+  }
+  .waypoint::before{
+    content:'';
+    position:absolute;
+    left:-28px;
+    top:6px;
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--teal);
+    box-shadow: 0 0 0 4px var(--bg);
+  }
+  .waypoint .tag{
+    position:absolute;
+    left:-28px;
+    top:-22px;
+    font-size:11px;
+    letter-spacing:.08em;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+
+  @media (max-width: 720px){
+    .rail{ display:none; }
+    .waypoint::before, .waypoint .tag{ display:none; }
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:20;
+    backdrop-filter: blur(10px);
+    background:rgba(11,27,46,0.85);
+    border-bottom:1px solid var(--grid);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+  }
+  .brand{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:17px; letter-spacing:.02em;}
+  .brand span{ color:var(--teal); }
+  .navlinks{ display:flex; gap:28px; font-size:13px; }
+  .navlinks a{ color:var(--muted); transition:color .15s; }
+  .navlinks a:hover{ color:var(--paper); }
+  .navlinks{ display:none; }
+  @media(min-width:640px){ .navlinks{ display:flex; } }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:110px 28px 90px; position:relative; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; color:var(--amber); letter-spacing:.12em;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:''; width:7px; height:7px; border-radius:50%;
+    background:var(--amber); box-shadow:0 0 8px var(--amber);
+  }
+  h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(36px, 6vw, 60px);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    max-width:780px;
+  }
+  h1 em{ font-style:normal; color:var(--teal); }
+  .hero p.lede{
+    margin-top:22px;
+    max-width:560px;
+    font-size:17px;
+    color:var(--muted);
+  }
+  .hero-meta{
+    margin-top:34px;
+    display:flex; flex-wrap:wrap; gap:10px 22px;
+    font-size:13px; color:var(--muted);
+  }
+  .hero-meta a:hover{ color:var(--teal); }
+  .hero-cta{ margin-top:34px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 20px;
+    border-radius:var(--radius);
+    font-size:14px; font-weight:600;
+    border:1px solid var(--line);
+    transition: all .15s ease;
+  }
+  .btn.primary{ background:var(--teal); color:var(--bg); border-color:var(--teal); }
+  .btn.primary:hover{ background:#7ff2e0; }
+  .btn.ghost{ color:var(--paper); }
+  .btn.ghost:hover{ border-color:var(--teal); color:var(--teal); }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:64px 28px; position:relative; }
+  .section-head{ margin-bottom:36px; }
+  .section-head h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:26px; font-weight:600;
+  }
+  .section-head .sub{
+    color:var(--muted); font-size:14px; margin-top:6px;
+  }
+
+  /* ---------- SUMMARY STRIP ---------- */
+  .summary{
+    border-top:1px solid var(--grid);
+    border-bottom:1px solid var(--grid);
+    padding:44px 28px;
+  }
+  .summary p{ max-width:700px; font-size:16px; color:#D6E0EC; }
+
+  /* ---------- PROJECTS ---------- */
+  .project-card{
+    background: var(--bg-raise);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:26px 26px 22px;
+    margin-bottom:22px;
+    position:relative;
+    transition: border-color .15s, transform .15s;
+  }
+  .project-card:hover{ border-color:var(--teal); transform:translateY(-2px); }
+  .pin{
+    display:inline-flex; align-items:center; gap:7px;
+    font-size:11px; letter-spacing:.08em; color:var(--teal);
+    margin-bottom:12px;
+  }
+  .pin::before{ content:'●'; font-size:9px; }
+  .pcard-head{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    gap:16px; flex-wrap:wrap;
+  }
+  .pcard-head h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:20px; font-weight:600;
+  }
+  .kind{ font-size:12px; color:var(--muted); font-style:italic; white-space:nowrap; padding-top:4px;}
+  .project-card ul{ margin:14px 0 16px 18px; color:#C6D3E2; font-size:14.5px; }
+  .project-card li{ margin-bottom:6px; }
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+  .tag{
+    font-size:11px; color:var(--muted);
+    border:1px solid var(--grid); border-radius:20px;
+    padding:4px 10px;
+  }
+  .live-row{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:12px;
+    border-top:1px dashed var(--line);
+    padding-top:14px;
+  }
+  .live-status{
+    display:flex; align-items:center; gap:7px;
+    font-size:12px; letter-spacing:.06em; color:var(--muted);
+  }
+  .live-dot{
+    width:8px; height:8px; border-radius:50%;
+    background:#4ADE80; box-shadow:0 0 8px #4ADE80;
+  }
+  .demo-link{
+    font-size:13px; color:var(--amber); font-weight:600;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .demo-link:hover{ color:#ffd08a; }
+  .demo-link svg{ width:13px; height:13px; }
+
+  /* ---------- SKILLS ---------- */
+  .skill-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:22px 28px; }
+  .skill-group h4{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; color:var(--amber); letter-spacing:.08em;
+    margin-bottom:12px;
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    font-size:13px; color:var(--paper);
+    background:var(--bg-raise); border:1px solid var(--grid);
+    border-radius:4px; padding:6px 11px;
+  }
+
+  /* ---------- EDUCATION / CERT TIMELINE ---------- */
+  .tl-item{
+    display:grid; grid-template-columns:120px 1fr; gap:20px;
+    padding:20px 0; border-bottom:1px solid var(--grid);
+  }
+  .tl-item:last-child{ border-bottom:none; }
+  .tl-date{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--muted); padding-top:3px; }
+  .tl-body h3{ font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; }
+  .tl-body .org{ color:var(--muted); font-size:13.5px; margin-top:3px; }
+  .tl-body .stat{ color:var(--teal); font-size:13px; margin-top:8px; font-family:'JetBrains Mono', monospace; }
+  @media(max-width:520px){ .tl-item{ grid-template-columns:1fr; gap:6px; } }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact{
+    text-align:left;
+    padding-top:70px; padding-bottom:70px;
+  }
+  .contact h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(28px,4.5vw,42px);
+    max-width:600px;
+  }
+  .contact p{ color:var(--muted); margin-top:14px; max-width:480px; }
+  .contact-links{ margin-top:30px; display:flex; flex-wrap:wrap; gap:14px; }
+
+  footer{
+    border-top:1px solid var(--grid);
+    padding:24px 28px 40px;
+    font-size:12px; color:var(--muted);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  .end-node{
+    position:absolute; left:-28px; bottom:6px;
+    width:13px; height:13px; border-radius:50%;
+    background:var(--amber); box-shadow:0 0 10px var(--amber);
+  }
+  @media(max-width:720px){ .end-node{ display:none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">KAR<span>R</span>.</div>
+    <div class="navlinks">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow mono">OPEN TO INTERNSHIPS &amp; ENTRY-LEVEL ROLES</div>
+    <h1>Kona Aravind Ranga Reddy builds software that <em>ships</em>, not just compiles.</h1>
+    <p class="lede">AI/ML undergraduate in Bangalore who turns coursework into working products — a booked ride, a reported pothole, a running deployment. Two live projects below, both built end to end and both still online.</p>
+    <div class="hero-meta mono">
+      <span>Bangalore, Karnataka, India</span>
+      <a href="mailto:aravindkona18090@gmail.com">aravindkona18090@gmail.com</a>
+      <span>+91 9160397434</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn primary" href="#projects">See the projects</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/kona-aravind-ranga-reddy-1736b0344" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="https://github.com/aravindkona18090" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<div class="summary">
+  <div class="wrap">
+    <p>Currently a 3rd-year B.Tech student in Artificial Intelligence and Machine Learning at GITAM, Bangalore, carrying a 9.27 / 10 CGPA. Comfortable across the stack — Python, Java, PHP, JavaScript — with a strong grounding in SQL, DSA, and version control. Most recently completed a GenAI-powered data analytics simulation with Tata via Forage.</p>
+  </div>
+</div>
+
+<section id="projects">
+  <div class="wrap" style="position:relative;">
+    <div class="rail"></div>
+
+    <div class="waypoint">
+      <div class="tag mono">WAYPOINT — PROJECTS</div>
+      <div class="section-head">
+        <h2>Things I've actually deployed</h2>
+        <div class="sub">Both projects below are live right now — not screenshots, not localhost.</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="pin mono">PERSONAL PROJECT</div>
+      <div class="pcard-head">
+        <h3>FlexiRide — Ride-Sharing Platform</h3>
+      </div>
+      <ul>
+        <li>Full-stack web app for posting, searching, and booking shared rides in real time.</li>
+        <li>Responsive UI built to simplify the ride-posting and booking workflow end to end.</li>
+        <li>Backend matching and booking logic to keep the ride-management flow reliable.</li>
+      </ul>
+      <div class="tags mono">
+        <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">HTML5</span>
+        <span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span>
+        <span class="tag">XAMPP</span><span class="tag">Git</span>
+      </div>
+      <div class="live-row">
+        <div class="live-status"><span class="live-dot"></span>DEPLOYED ON RAILWAY</div>
+        <a class="demo-link" href="https://flexiride.up.railway.app/" target="_blank" rel="noopener">
+          flexiride.up.railway.app
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="pin mono">HACKATHON PROJECT</div>
+      <div class="pcard-head">
+        <h3>CivicConnect — Crowdsourced Civic Issue Reporting</h3>
+      </div>
+      <ul>
+        <li>Lets citizens report civic issues — potholes, garbage, streetlight failures — on an interactive map.</li>
+        <li>Duplicate reports caught with location-based detection using the Haversine distance formula.</li>
+        <li>Built for four languages — English, Telugu, Hindi, Kannada — to reach a wider user base.</li>
+        <li>Clean interface for reporting, tracking, and status updates with map-based visualization.</li>
+      </ul>
+      <div class="tags mono">
+        <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
+        <span class="tag">Leaflet.js</span><span class="tag">OpenStreetMap</span><span class="tag">PHP</span>
+        <span class="tag">MySQL</span><span class="tag">Git</span>
+      </div>
+      <div class="live-row">
+        <div class="live-status"><span class="live-dot"></span>DEPLOYED ON RAILWAY</div>
+        <a class="demo-link" href="https://civicconnect.up.railway.app/" target="_blank" rel="noopener">
+          civicconnect.up.railway.app
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap" style="position:relative;">
+    <div class="rail"></div>
+    <div class="waypoint">
+      <div class="tag mono">WAYPOINT — SKILLS</div>
+      <div class="section-head">
+        <h2>Toolkit</h2>
+        <div class="sub">What I reach for when building.</div>
+      </div>
+    </div>
+
+    <div class="skill-grid">
+      <div class="skill-group">
+        <h4>PROGRAMMING LANGUAGES</h4>
+        <div class="chip-row">
+          <span class="chip">Python</span><span class="chip">Java</span><span class="chip">C</span>
+          <span class="chip">C++</span><span class="chip">SQL</span><span class="chip">PHP</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>CORE CS</h4>
+        <div class="chip-row">
+          <span class="chip">Data Structures &amp; Algorithms</span><span class="chip">DBMS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>WEB DEVELOPMENT</h4>
+        <div class="chip-row">
+          <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span>
+          <span class="chip">PHP</span><span class="chip">Bootstrap</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>TOOLS &amp; VERSION CONTROL</h4>
+        <div class="chip-row">
+          <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">VS Code</span><span class="chip">XAMPP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap" style="position:relative;">
+    <div class="rail"></div>
+    <div class="waypoint">
+      <div class="tag mono">WAYPOINT — EDUCATION</div>
+      <div class="section-head">
+        <h2>Education &amp; certification</h2>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date mono">EXP. MAY 2028</div>
+      <div class="tl-body">
+        <h3>B.Tech, Artificial Intelligence &amp; Machine Learning</h3>
+        <div class="org">GITAM (Deemed to be University), Bangalore — 3rd year</div>
+        <div class="stat">CGPA 9.27 / 10</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date mono">MAY 2025</div>
+      <div class="tl-body">
+        <h3>Diploma, Computer Engineering</h3>
+        <div class="org">Sree Vidyanikethan Engineering College, Tirupati</div>
+        <div class="stat">97.29%</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date mono">JULY 2026</div>
+      <div class="tl-body">
+        <h3>GenAI Powered Data Analytics Job Simulation</h3>
+        <div class="org">Tata, via Forage — exploratory data analysis, delinquency prediction, and AI-driven collections strategy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap" style="position:relative;">
+    <div class="rail"></div>
+    <div class="end-node"></div>
+    <div class="waypoint contact">
+      <div class="tag mono">DESTINATION</div>
+      <h2>Let's build something that ships.</h2>
+      <p>Open to internships and entry-level roles in Software Engineering, AI/ML, or IT. Reach out directly — I reply fast.</p>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:aravindkona18090@gmail.com">aravindkona18090@gmail.com</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/kona-aravind-ranga-reddy-1736b0344" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" href="https://github.com/aravindkona18090" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+    <span class="mono">KONA ARAVIND RANGA REDDY</span>
+    <span class="mono">BANGALORE, IN</span>
+  </div>
+</footer>
+
+</body>
+</html>
