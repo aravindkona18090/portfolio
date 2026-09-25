@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kona Aravind Ranga Reddy — Portfolio</title>
+<title>Kona Aravind Ranga Reddy — Software Engineer, AI/ML</title>
+<meta name="description" content="Portfolio of Kona Aravind Ranga Reddy — AI/ML undergraduate in Bangalore who ships full-stack products. Two live deployed projects: FlexiRide and CivicConnect. Open to internships and entry-level roles.">
+<meta name="theme-color" content="#0B1B2E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kona Aravind Ranga Reddy — Software Engineer, AI/ML">
+<meta property="og:description" content="AI/ML undergraduate in Bangalore who ships full-stack products. Two live deployed projects below.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kona Aravind Ranga Reddy — Software Engineer, AI/ML">
+<meta name="twitter:description" content="AI/ML undergraduate in Bangalore who ships full-stack products.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1B2E'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='700' font-size='26' fill='%235EEAD4' text-anchor='middle'%3EKR%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -35,6 +44,29 @@
   }
   ::selection{ background:var(--amber); color:var(--bg); }
   a{ color:inherit; text-decoration:none; }
+
+  .visually-hidden{
+    position:absolute; width:1px; height:1px;
+    padding:0; margin:-1px; overflow:hidden;
+    clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+  .skip-link{
+    position:absolute; top:-100%; left:16px; z-index:100;
+    background:var(--teal); color:var(--bg);
+    padding:10px 16px; font-size:13px; font-weight:600;
+    border-radius:var(--radius); transition:top .15s;
+  }
+  .skip-link:focus{ top:12px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  [data-reveal]{
+    opacity:0; transform:translateY(14px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  [data-reveal].in-view{ opacity:1; transform:translateY(0); }
 
   .mono{ font-family:'JetBrains Mono', monospace; }
 
@@ -105,14 +137,72 @@
   }
   .brand{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:17px; letter-spacing:.02em;}
   .brand span{ color:var(--teal); }
-  .navlinks{ display:flex; gap:28px; font-size:13px; }
+  .navlinks{ display:none; gap:28px; font-size:13px; }
   .navlinks a{ color:var(--muted); transition:color .15s; }
   .navlinks a:hover{ color:var(--paper); }
-  .navlinks{ display:none; }
   @media(min-width:640px){ .navlinks{ display:flex; } }
+
+  .nav-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:36px; height:36px;
+    background:transparent; border:1px solid var(--line); border-radius:4px;
+    cursor:pointer;
+  }
+  .nav-toggle svg{ width:18px; height:18px; stroke:var(--paper); }
+  @media(min-width:640px){ .nav-toggle{ display:none; } }
+
+  .mobile-menu{
+    display:none; flex-direction:column;
+    border-top:1px solid var(--grid);
+    background:var(--bg-raise);
+  }
+  .mobile-menu.open{ display:flex; }
+  .mobile-menu a{
+    padding:16px 28px; font-size:14px; color:var(--paper);
+    border-bottom:1px solid var(--grid);
+  }
+  @media(min-width:640px){ .mobile-menu{ display:none !important; } }
 
   /* ---------- HERO ---------- */
   .hero{ padding:110px 28px 90px; position:relative; }
+  .hero-grid{
+    display:grid; grid-template-columns:1fr; gap:20px;
+    align-items:start;
+  }
+  @media(min-width:860px){
+    .hero-grid{ grid-template-columns:1fr 160px; }
+  }
+  .portrait-card{
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--bg-raise);
+    border-radius:8px;
+    padding:6px;
+    max-width:160px;
+    justify-self:start;
+  }
+  @media(min-width:860px){ .portrait-card{ justify-self:end; } }
+  .portrait-card img{
+    width:100%; display:block;
+    border-radius:5px;
+    filter:saturate(0.94) contrast(1.03);
+  }
+  .portrait-card::before{
+    content:'';
+    position:absolute; inset:-1px;
+    border-radius:8px;
+    padding:1px;
+    background:linear-gradient(160deg, var(--teal), transparent 40%, transparent 60%, var(--amber));
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:.55; pointer-events:none;
+  }
+  .portrait-tag{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:8px; padding:0 2px;
+    font-size:9.5px; color:var(--muted); letter-spacing:.04em;
+  }
+  .portrait-tag .live-dot{ width:7px; height:7px; }
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
     font-size:12px; color:var(--amber); letter-spacing:.12em;
@@ -125,10 +215,9 @@
   h1{
     font-family:'Space Grotesk', sans-serif;
     font-weight:700;
-    font-size:clamp(36px, 6vw, 60px);
-    line-height:1.05;
+    font-size:clamp(28px, 4.2vw, 48px);
+    line-height:1.1;
     letter-spacing:-0.01em;
-    max-width:780px;
   }
   h1 em{ font-style:normal; color:var(--teal); }
   .hero p.lede{
@@ -156,6 +245,15 @@
   .btn.primary:hover{ background:#7ff2e0; }
   .btn.ghost{ color:var(--paper); }
   .btn.ghost:hover{ border-color:var(--teal); color:var(--teal); }
+
+  .hero-stats{
+    margin-top:48px;
+    display:flex; flex-wrap:wrap; gap:36px;
+    padding-top:28px; border-top:1px solid var(--grid);
+  }
+  .stat-block{ display:flex; flex-direction:column; gap:4px; }
+  .stat-num{ font-size:24px; font-weight:600; color:var(--teal); }
+  .stat-label{ font-size:11.5px; color:var(--muted); letter-spacing:.03em; max-width:150px; font-family:'Inter',sans-serif; }
 
   /* ---------- SECTION SHELL ---------- */
   section{ padding:64px 28px; position:relative; }
@@ -287,6 +385,8 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <header>
   <nav class="wrap">
     <div class="brand">KAR<span>R</span>.</div>
@@ -296,23 +396,50 @@
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </div>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
   </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
 </header>
+
+<main id="main">
 
 <section class="hero">
   <div class="wrap">
-    <div class="eyebrow mono">OPEN TO INTERNSHIPS &amp; ENTRY-LEVEL ROLES</div>
-    <h1>Kona Aravind Ranga Reddy builds software that <em>ships</em>, not just compiles.</h1>
-    <p class="lede">AI/ML undergraduate in Bangalore who turns coursework into working products — a booked ride, a reported pothole, a running deployment. Two live projects below, both built end to end and both still online.</p>
-    <div class="hero-meta mono">
-      <span>Bangalore, Karnataka, India</span>
-      <a href="mailto:aravindkona18090@gmail.com">aravindkona18090@gmail.com</a>
-      <span>+91 9160397434</span>
-    </div>
-    <div class="hero-cta">
-      <a class="btn primary" href="#projects">See the projects</a>
-      <a class="btn ghost" href="https://www.linkedin.com/in/kona-aravind-ranga-reddy-1736b0344" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn ghost" href="https://github.com/aravindkona18090" target="_blank" rel="noopener">GitHub</a>
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow mono">OPEN TO INTERNSHIPS &amp; ENTRY-LEVEL ROLES</div>
+        <h1>Kona Aravind Ranga Reddy builds software that <em>ships</em>, not just compiles.</h1>
+        <p class="lede">AI/ML undergraduate in Bangalore who turns coursework into working products — a booked ride, a reported pothole, a running deployment. Two live projects below, both built end to end and both still online.</p>
+        <div class="hero-meta mono">
+          <span>Bangalore, Karnataka, India</span>
+          <a href="mailto:aravindkona18090@gmail.com">aravindkona18090@gmail.com</a>
+          <span>+91 9160397434</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn primary" href="#projects">See the projects</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/kona-aravind-ranga-reddy-1736b0344" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn ghost" href="https://github.com/aravindkona18090" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="hero-stats mono">
+          <div class="stat-block"><span class="stat-num">2</span><span class="stat-label">live deployed projects</span></div>
+          <div class="stat-block"><span class="stat-num">9.27</span><span class="stat-label">CGPA / 10</span></div>
+          <div class="stat-block"><span class="stat-num">4</span><span class="stat-label">languages supported in CivicConnect</span></div>
+        </div>
+      </div>
+      <div class="portrait-card">
+        <img src="photo.jpg" alt="Kona Aravind Ranga Reddy" width="160" height="199" loading="eager">
+        <div class="portrait-tag mono">
+          <span><span class="live-dot" style="display:inline-block; margin-right:5px;"></span>BANGALORE, IN</span>
+          <span>KARR.</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -327,7 +454,7 @@
   <div class="wrap" style="position:relative;">
     <div class="rail"></div>
 
-    <div class="waypoint">
+    <div class="waypoint" data-reveal>
       <div class="tag mono">WAYPOINT — PROJECTS</div>
       <div class="section-head">
         <h2>Things I've actually deployed</h2>
@@ -335,7 +462,7 @@
       </div>
     </div>
 
-    <div class="project-card">
+    <div class="project-card" data-reveal>
       <div class="pin mono">PERSONAL PROJECT</div>
       <div class="pcard-head">
         <h3>FlexiRide — Ride-Sharing Platform</h3>
@@ -354,12 +481,13 @@
         <div class="live-status"><span class="live-dot"></span>DEPLOYED ON RAILWAY</div>
         <a class="demo-link" href="https://flexiride.up.railway.app/" target="_blank" rel="noopener">
           flexiride.up.railway.app
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          <span class="visually-hidden">(opens in new tab)</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
         </a>
       </div>
     </div>
 
-    <div class="project-card">
+    <div class="project-card" data-reveal>
       <div class="pin mono">HACKATHON PROJECT</div>
       <div class="pcard-head">
         <h3>CivicConnect — Crowdsourced Civic Issue Reporting</h3>
@@ -379,7 +507,8 @@
         <div class="live-status"><span class="live-dot"></span>DEPLOYED ON RAILWAY</div>
         <a class="demo-link" href="https://civicconnect.up.railway.app/" target="_blank" rel="noopener">
           civicconnect.up.railway.app
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          <span class="visually-hidden">(opens in new tab)</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
         </a>
       </div>
     </div>
@@ -389,7 +518,7 @@
 <section id="skills">
   <div class="wrap" style="position:relative;">
     <div class="rail"></div>
-    <div class="waypoint">
+    <div class="waypoint" data-reveal>
       <div class="tag mono">WAYPOINT — SKILLS</div>
       <div class="section-head">
         <h2>Toolkit</h2>
@@ -431,7 +560,7 @@
 <section id="education">
   <div class="wrap" style="position:relative;">
     <div class="rail"></div>
-    <div class="waypoint">
+    <div class="waypoint" data-reveal>
       <div class="tag mono">WAYPOINT — EDUCATION</div>
       <div class="section-head">
         <h2>Education &amp; certification</h2>
@@ -468,7 +597,7 @@
   <div class="wrap" style="position:relative;">
     <div class="rail"></div>
     <div class="end-node"></div>
-    <div class="waypoint contact">
+    <div class="waypoint contact" data-reveal>
       <div class="tag mono">DESTINATION</div>
       <h2>Let's build something that ships.</h2>
       <p>Open to internships and entry-level roles in Software Engineering, AI/ML, or IT. Reach out directly — I reply fast.</p>
@@ -481,12 +610,49 @@
   </div>
 </section>
 
+</main>
+
 <footer>
   <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
     <span class="mono">KONA ARAVIND RANGA REDDY</span>
     <span class="mono">BANGALORE, IN</span>
   </div>
 </footer>
+
+<script>
+  // Mobile menu toggle
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
+    });
+  });
+
+  // Scroll reveal for waypoints, respecting reduced-motion preference
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('in-view'));
+  }
+</script>
 
 </body>
 </html>
