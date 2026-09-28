@@ -1217,27 +1217,32 @@
 
           <!-- CivicConnect Card -->
           <div class="project-card glass-panel" data-reveal>
-            <div class="project-badge mono">● HACKATHON PROJECT</div>
-            <div class="project-head">
-              <h3>CivicConnect — Crowdsourced Civic Issue Reporting</h3>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 14px;">
+              <div class="project-badge mono" style="margin-bottom:0;">● AI-POWERED SMART MUNICIPAL GOVERNANCE</div>
+              <span class="mono" style="font-size:11px; font-weight:700; color:var(--teal); background:rgba(45,212,191,0.1); padding:3px 10px; border-radius:12px; border:1px solid rgba(45,212,191,0.25);">Google Gemini Vision AI &amp; GIS</span>
             </div>
+            <div class="project-head">
+              <h3>CivicConnect — Smart Municipal Intelligence &amp; Civic Redressal Platform</h3>
+            </div>
+            <p style="color: #CBD5E1; font-size: 15px; margin-bottom: 16px; line-height: 1.6;">
+              An end-to-end smart city governance platform connecting citizens, municipal field officers, and administrators — leveraging Multimodal Vision AI, 45m Haversine GIS deduplication, and verified Before-vs-After resolution auditing.
+            </p>
             <ul class="project-bullets">
-              <li>Empowers citizens to report municipal issues (potholes, garbage, streetlight failures) on an
-                interactive map.</li>
-              <li>Prevents duplicate report spam with spatial detection using the Haversine distance formula.</li>
-              <li>Multilingual interface supporting four languages — English, Telugu, Hindi, Kannada — to maximize
-                accessibility.</li>
-              <li>Clean administrative interface for issue reporting, status tracking, and geospatial visualization.
-              </li>
+              <li><strong>Google Gemini Multimodal Vision AI:</strong> Auto-analyzes uploaded photo evidence to detect category (<code style="color:var(--teal); font-size:13px;">Roads, Sanitation, Electricity, Water</code>), rate severity levels (<code style="color:var(--teal); font-size:13px;">Critical, High, Medium, Low</code>), and generate issue descriptions (with PyTorch MobileNetV2 offline fallback).</li>
+              <li><strong>3-Tier Role Architecture (Citizen, Field Worker, Admin):</strong> Citizens get AI camera scanning, voice-to-text, &amp; 24/7 CivicBot AI chat (4 languages: EN, TE, HI, KN); Field Workers get turn-by-turn Google Maps GPS navigation &amp; 1-click translation; Admins get severity heatmaps &amp; proof-of-fix verification.</li>
+              <li><strong>45-Meter GIS Haversine Deduplication:</strong> Eliminates municipal ticket spam by detecting duplicate reports within a 45m radius on Leaflet.js / OpenStreetMap before worker allocation.</li>
+              <li><strong>Verified Before-vs-After Audit &amp; Security:</strong> Enforces photographic proof comparison before closing tickets, built on PHP 8 REST APIs, BCRYPT hashing, 100% prepared SQL statements, and environment variable API key protection (<code style="color:var(--teal); font-size:13px;">getenv('GEMINI_API_KEY')</code>).</li>
             </ul>
             <div class="tags-row mono">
-              <span class="tag-chip">HTML5</span>
-              <span class="tag-chip">CSS3</span>
-              <span class="tag-chip">JavaScript</span>
-              <span class="tag-chip">Leaflet.js</span>
-              <span class="tag-chip">OpenStreetMap</span>
-              <span class="tag-chip">PHP</span>
+              <span class="tag-chip">PHP 8</span>
+              <span class="tag-chip">Google Gemini Vision AI</span>
               <span class="tag-chip">MySQL</span>
+              <span class="tag-chip">Leaflet.js / OpenStreetMap</span>
+              <span class="tag-chip">45m Haversine Deduplication</span>
+              <span class="tag-chip">Multilingual AI (4 Lang)</span>
+              <span class="tag-chip">GPS Navigation API</span>
+              <span class="tag-chip">JavaScript (ES6+)</span>
+              <span class="tag-chip">PyTorch ML Fallback</span>
               <span class="tag-chip">Git</span>
             </div>
             <div class="live-footer">
