@@ -76,6 +76,68 @@
       color: #030712;
     }
 
+    /* Ambient Canvas & Neural Cyber Mesh Background */
+    .ambient-orbs-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -3;
+      overflow: hidden;
+    }
+
+    .ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(110px);
+      opacity: 0.38;
+      will-change: transform;
+    }
+
+    .orb-1 {
+      top: 5%;
+      left: 12%;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(0, 245, 212, 0.6) 0%, rgba(0, 245, 212, 0) 70%);
+      animation: driftOrb1 22s ease-in-out infinite alternate;
+    }
+
+    .orb-2 {
+      top: 40%;
+      right: 8%;
+      width: 620px;
+      height: 620px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.5) 0%, rgba(14, 165, 233, 0) 70%);
+      animation: driftOrb2 28s ease-in-out infinite alternate;
+    }
+
+    .orb-3 {
+      top: 72%;
+      left: 20%;
+      width: 540px;
+      height: 540px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.45) 0%, rgba(99, 102, 241, 0) 70%);
+      animation: driftOrb3 24s ease-in-out infinite alternate;
+    }
+
+    @keyframes driftOrb1 {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(90px, 70px, 0) scale(1.18); }
+      100% { transform: translate3d(-50px, 110px, 0) scale(0.92); }
+    }
+
+    @keyframes driftOrb2 {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(-100px, -80px, 0) scale(1.22); }
+      100% { transform: translate3d(70px, -50px, 0) scale(0.88); }
+    }
+
+    @keyframes driftOrb3 {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(80px, -60px, 0) scale(1.12); }
+      100% { transform: translate3d(-60px, -90px, 0) scale(1.04); }
+    }
+
     #ambientCanvas {
       position: fixed;
       top: 0;
@@ -83,20 +145,27 @@
       width: 100vw;
       height: 100vh;
       pointer-events: none;
-      z-index: -1;
-      opacity: 0.75;
+      z-index: -2;
+      opacity: 0.85;
     }
 
     .bg-grid {
       position: fixed;
       inset: 0;
       background-image:
-        radial-gradient(circle at 50% 0%, rgba(0, 245, 212, 0.07) 0%, transparent 60%),
-        radial-gradient(circle at 100% 50%, rgba(14, 165, 233, 0.05) 0%, transparent 45%),
+        radial-gradient(750px circle at var(--mouse-x, 50%) var(--mouse-y, 30%), rgba(0, 245, 212, 0.08) 0%, transparent 80%),
         linear-gradient(var(--grid-line) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
-      background-position: 0 0, 0 0, -1px -1px, -1px -1px;
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+      background-position: 0 0, -1px -1px, -1px -1px;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .bg-vignette {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 45%, rgba(3, 7, 18, 0.8) 100%);
       pointer-events: none;
       z-index: -1;
     }
@@ -180,168 +249,156 @@
       box-shadow: 0 16px 48px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 245, 212, 0.12);
     }
 
-    .hud-ribbon {
-      background: rgba(4, 8, 18, 0.95);
-      border-bottom: 1px solid rgba(0, 245, 212, 0.22);
-      font-size: 11px;
-      color: var(--paper-muted);
-      padding: 7px 0;
-      position: relative;
-      z-index: 1001;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-
-    .hud-ribbon .wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .hud-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hud-pulse {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--teal);
-      box-shadow: 0 0 10px var(--teal);
-      animation: hudPulse 2s infinite;
-    }
-
-    @keyframes hudPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.35; transform: scale(0.85); }
-    }
-
     header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: fixed;
+      top: 18px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+      padding: 0 16px;
+    }
+
+    .nav-pill {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 6px 5px 14px;
+      background: rgba(6, 12, 24, 0.78);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      background: rgba(4, 8, 18, 0.82);
-      border-bottom: 1px solid var(--line);
-      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.75), 0 0 20px rgba(0, 245, 212, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    header.scrolled {
-      background: rgba(3, 7, 16, 0.96);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
-      border-bottom-color: rgba(0, 245, 212, 0.25);
+    .nav-pill:hover {
+      border-color: rgba(0, 245, 212, 0.35);
+      box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 245, 212, 0.15);
     }
 
-    nav.wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 68px;
-    }
-
-    .brand {
+    .pill-logo {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 800;
-      font-size: 21px;
-      letter-spacing: -0.03em;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .brand span {
-      color: var(--teal);
-      text-shadow: 0 0 14px var(--teal-glow);
-    }
-
-    .brand-tag {
-      font-size: 10px;
-      background: rgba(0, 245, 212, 0.1);
-      border: 1px solid rgba(0, 245, 212, 0.3);
-      color: var(--teal);
-      padding: 2px 7px;
-      border-radius: 4px;
-      font-weight: 600;
-    }
-
-    .navlinks {
-      display: none;
-      gap: 28px;
-      font-size: 13.5px;
-      font-weight: 500;
-    }
-
-    .navlinks a {
-      color: var(--paper-muted);
-      position: relative;
-      padding: 6px 0;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12.5px;
-    }
-
-    .navlinks a:hover,
-    .navlinks a.active {
-      color: var(--teal);
-    }
-
-    .navlinks a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--teal);
-      transition: width 0.25s ease;
-    }
-
-    .navlinks a:hover::after,
-    .navlinks a.active::after {
-      width: 100%;
-    }
-
-    @media(min-width: 768px) {
-      .navlinks {
-        display: flex;
-      }
-    }
-
-    .nav-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-sm);
+      font-size: 16px;
+      letter-spacing: -0.02em;
       color: var(--paper);
-      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding-right: 6px;
+    }
+
+    .pill-logo span {
+      color: var(--teal);
+      text-shadow: 0 0 10px var(--teal);
+    }
+
+    .pill-divider {
+      width: 1px;
+      height: 18px;
+      background: rgba(255, 255, 255, 0.12);
+      margin: 0 4px;
+    }
+
+    .pill-links {
+      display: none;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .pill-links a {
+      color: #94A3B8;
+      font-size: 12.5px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 9999px;
       transition: all 0.2s ease;
     }
 
-    .nav-toggle:hover {
+    .pill-links a:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .pill-links a.active {
+      color: #00F5D4;
+      background: rgba(0, 245, 212, 0.14);
+      font-weight: 600;
+      box-shadow: 0 0 12px rgba(0, 245, 212, 0.15);
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #030712;
+      background: var(--teal);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      box-shadow: 0 2px 12px var(--teal-glow);
+      transition: all 0.2s ease;
+      margin-left: 4px;
+    }
+
+    .pill-btn:hover {
+      transform: scale(1.04);
+      filter: brightness(1.1);
+      box-shadow: 0 4px 18px var(--teal-glow);
+    }
+
+    .pill-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--paper);
+      cursor: pointer;
+      margin-left: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .pill-toggle:hover {
       border-color: var(--teal);
       color: var(--teal);
     }
 
-    @media(min-width: 768px) {
-      .nav-toggle {
+    @media(min-width: 700px) {
+      .pill-links {
+        display: flex;
+      }
+      .pill-toggle {
         display: none;
       }
     }
 
     .mobile-menu {
+      pointer-events: auto;
       display: none;
       flex-direction: column;
-      background: rgba(4, 8, 18, 0.98);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border-card);
+      position: fixed;
+      top: 68px;
+      left: 16px;
+      right: 16px;
+      max-width: 380px;
+      margin: 0 auto;
+      background: rgba(6, 12, 24, 0.96);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(0, 245, 212, 0.25);
+      border-radius: var(--radius-md);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+      padding: 10px;
+      z-index: 1000;
     }
 
     .mobile-menu.open {
@@ -349,22 +406,22 @@
     }
 
     .mobile-menu a {
-      padding: 14px 28px;
-      font-size: 14px;
+      padding: 10px 16px;
+      font-size: 13.5px;
       font-weight: 500;
       color: var(--paper-muted);
-      border-bottom: 1px solid var(--line);
-      font-family: 'JetBrains Mono', monospace;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
     }
 
     .mobile-menu a:hover,
     .mobile-menu a.active {
       color: var(--teal);
-      background: rgba(0, 245, 212, 0.06);
+      background: rgba(0, 245, 212, 0.1);
     }
 
     .hero {
-      padding: 80px 0 65px;
+      padding: 96px 0 65px;
       position: relative;
     }
 
@@ -384,25 +441,24 @@
     .status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 6px 14px;
-      border-radius: 4px;
-      background: rgba(245, 158, 11, 0.1);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--amber);
-      letter-spacing: 0.06em;
-      margin-bottom: 22px;
-      box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+      gap: 8px;
+      padding: 5px 13px;
+      border-radius: 9999px;
+      background: rgba(0, 245, 212, 0.08);
+      border: 1px solid rgba(0, 245, 212, 0.25);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 20px;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .status-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--amber);
-      box-shadow: 0 0 10px var(--amber);
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
       animation: pulse 2s infinite;
     }
 
@@ -411,15 +467,27 @@
       50% { transform: scale(1.3); opacity: 0.5; }
     }
 
-    h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800;
-      font-size: clamp(32px, 4.4vw, 54px);
-      line-height: 1.14;
-      letter-spacing: -0.03em;
+    .hero-name {
+      display: block;
+      font-size: clamp(16px, 2.2vw, 20px);
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--teal);
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
     }
 
-    h1 .gradient-text {
+    .hero-tagline {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 4.6vw, 54px);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: var(--paper);
+    }
+
+    .hero-tagline .gradient-text {
       background: linear-gradient(135deg, #00F5D4 0%, #0EA5E9 50%, #818CF8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -427,16 +495,16 @@
     }
 
     p.lede {
-      margin-top: 22px;
-      max-width: 640px;
-      font-size: 17px;
+      margin-top: 18px;
+      max-width: 620px;
+      font-size: 16px;
       color: #CBD5E1;
       font-weight: 400;
       line-height: 1.7;
     }
 
     .hero-meta {
-      margin-top: 26px;
+      margin-top: 22px;
       display: flex;
       flex-wrap: wrap;
       gap: 12px 24px;
@@ -457,27 +525,26 @@
     }
 
     .hero-cta {
-      margin-top: 34px;
+      margin-top: 30px;
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
-      padding: 11px 22px;
+      gap: 8px;
+      padding: 10px 20px;
       border-radius: var(--radius-sm);
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       border: 1px solid transparent;
-      font-family: 'JetBrains Mono', monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     .btn.primary {
@@ -688,16 +755,31 @@
       margin-top: 6px;
     }
 
+    .btn.btn-sm {
+      padding: 7px 14px;
+      font-size: 12px;
+      gap: 6px;
+    }
+
     .project-card {
-      padding: 30px;
+      padding: 26px 28px;
       border-radius: var(--radius-lg);
-      margin-bottom: 36px;
+      margin-bottom: 28px;
       border-left: 3px solid var(--teal);
+    }
+
+    .project-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
     .project-badge {
       display: inline-block;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       color: var(--teal);
       letter-spacing: 0.05em;
@@ -705,24 +787,31 @@
 
     .project-head h3 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(20px, 2.4vw, 24px);
+      font-size: clamp(19px, 2.2vw, 22px);
       font-weight: 700;
       color: var(--paper);
-      margin: 6px 0 12px 0;
+      margin: 4px 0 8px 0;
+    }
+
+    .project-subdesc {
+      font-size: 14.5px;
+      color: #94A3B8;
+      line-height: 1.6;
+      margin-bottom: 14px;
     }
 
     .project-bullets {
       list-style: none;
-      margin: 16px 0;
+      margin: 12px 0 16px;
     }
 
     .project-bullets li {
       position: relative;
       padding-left: 20px;
-      margin-bottom: 10px;
-      font-size: 14.5px;
+      margin-bottom: 8px;
+      font-size: 14px;
       color: #CBD5E1;
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     .project-bullets li::before {
@@ -730,42 +819,41 @@
       position: absolute;
       left: 0;
       color: var(--teal);
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.3;
     }
 
     .tags-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
+      gap: 7px;
+      margin-top: 14px;
     }
 
     .tag-chip {
-      font-size: 11.5px;
-      padding: 4px 10px;
+      font-size: 11px;
+      padding: 3px 9px;
       border-radius: 4px;
       background: rgba(0, 245, 212, 0.06);
       border: 1px solid rgba(0, 245, 212, 0.2);
       color: #E2E8F0;
     }
 
-    .live-footer {
+    .project-actions {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 24px;
-      padding-top: 18px;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 16px;
       border-top: 1px solid var(--line);
     }
 
     .live-indicator {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 11.5px;
+      gap: 7px;
+      font-size: 10.5px;
       font-weight: 700;
       color: #34D399;
       letter-spacing: 0.04em;
@@ -887,6 +975,13 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
+    .sim-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
     .sim-slider {
       flex: 1;
       accent-color: var(--teal);
@@ -938,69 +1033,125 @@
       color: var(--teal);
     }
 
-    .skill-filter-tabs {
+    .domains-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media(min-width: 768px) {
+      .domains-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .domain-card {
+      padding: 26px 28px;
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--teal);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .domain-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 245, 212, 0.12);
+    }
+
+    .domain-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .domain-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: rgba(0, 245, 212, 0.08);
+      border: 1px solid rgba(0, 245, 212, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .domain-icon-box svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .domain-badge {
+      font-size: 10.5px;
+      color: var(--teal);
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .domain-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--paper);
+    }
+
+    .domain-desc {
+      font-size: 13.5px;
+      color: #CBD5E1;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .domain-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
-    .tab-btn {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      color: var(--paper-muted);
-      padding: 7px 16px;
-      border-radius: 4px;
-      font-size: 12.5px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
+    .domain-tag {
+      font-size: 12px;
       font-family: 'JetBrains Mono', monospace;
+      padding: 5px 11px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--paper);
+      transition: all 0.2s ease;
     }
 
-    .tab-btn:hover,
-    .tab-btn.active {
-      background: rgba(0, 245, 212, 0.15);
+    .domain-tag:hover {
       border-color: var(--teal);
       color: var(--teal);
-      box-shadow: 0 0 16px rgba(0, 245, 212, 0.15);
+      background: rgba(0, 245, 212, 0.08);
     }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 12px;
+    .domain-tag.highlight {
+      background: rgba(0, 245, 212, 0.1);
+      border-color: rgba(0, 245, 212, 0.35);
+      color: var(--teal);
+      font-weight: 600;
     }
 
-    .skill-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-sm);
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      transition: all 0.25s ease;
-    }
-
-    .skill-card:hover {
-      border-color: var(--teal);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.6), 0 0 16px rgba(0, 245, 212, 0.15);
-    }
-
-    .skill-card-cat {
-      font-size: 10px;
+    .domain-footer {
+      font-size: 11.5px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
       color: var(--paper-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
+      line-height: 1.5;
     }
 
-    .skill-card-title {
-      font-size: 13.5px;
+    .domain-footer-lbl {
+      color: var(--teal);
       font-weight: 700;
-      color: var(--paper);
+      margin-right: 6px;
+      display: inline-block;
     }
 
     .contact-box {
@@ -1189,60 +1340,54 @@
 
 <body>
 
+  <div class="ambient-orbs-container" aria-hidden="true">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+  </div>
   <canvas id="ambientCanvas"></canvas>
   <div class="bg-grid"></div>
+  <div class="bg-vignette"></div>
 
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- TOP TELEMETRY HUD RIBBON -->
-  <div class="hud-ribbon mono">
-    <div class="wrap">
-      <div class="hud-item">
-        <span class="hud-pulse"></span>
-        <span style="color: var(--teal); font-weight:700;">SYS_TELEMETRY: ONLINE</span>
-        <span style="color: rgba(255,255,255,0.2);">|</span>
-        <span>BANGALORE NODE: 12.9716° N, 77.5946° E</span>
-      </div>
-      <div class="hud-item" style="gap:14px;">
-        <span>SERVICES: <strong style="color:var(--paper);">2 DEPLOYED (RAILWAY)</strong></span>
-        <span style="color: rgba(255,255,255,0.2);">|</span>
-        <span id="hudTimestamp">17:50:00 IST</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- NAVIGATION -->
+  <!-- NAVIGATION: ULTRA-SLEEK FLOATING PILL DOCK -->
   <header id="header">
-    <nav class="wrap">
-      <a href="#" class="brand" aria-label="Kona Aravind Ranga Reddy Home">
+    <nav class="nav-pill">
+      <a href="#" class="pill-logo" aria-label="Kona Aravind Ranga Reddy Home">
         KARR<span>.</span>
-        <span class="brand-tag mono">AI/ML ARCHITECT</span>
       </a>
-      <div class="navlinks" id="navLinks">
-        <a href="#projects">// 01. PROJECTS</a>
-        <a href="#experience">// 02. EXPERIENCE</a>
-        <a href="#skills">// 03. SKILLS</a>
-        <a href="#education">// 04. EDUCATION</a>
-        <a href="#certifications">// 05. CERTS</a>
-        <a href="#contact">// 06. CONTACT</a>
+
+      <span class="pill-divider"></span>
+
+      <div class="pill-links" id="navLinks">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
       </div>
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu"
-        aria-label="Open Navigation Menu">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round">
+
+      <a class="pill-btn" href="Aravind_Kona_Resume.pdf" target="_blank" download="Kona_Aravind_Ranga_Reddy_Resume.pdf" aria-label="Download Resume">
+        Resume
+      </a>
+
+      <button class="pill-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open Navigation Menu">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <path d="M4 7h16M4 12h16M4 17h16" />
         </svg>
       </button>
     </nav>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#projects">// 01. PROJECTS</a>
-      <a href="#experience">// 02. EXPERIENCE</a>
-      <a href="#skills">// 03. SKILLS</a>
-      <a href="#education">// 04. EDUCATION</a>
-      <a href="#certifications">// 05. CERTS</a>
-      <a href="#contact">// 06. CONTACT</a>
-    </div>
   </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+    <a href="Aravind_Kona_Resume.pdf" target="_blank" download="Kona_Aravind_Ranga_Reddy_Resume.pdf" style="color: var(--teal); font-weight: 600;">Download Resume (PDF)</a>
+  </div>
 
   <main id="main">
 
@@ -1251,15 +1396,18 @@
       <div class="wrap">
         <div class="hero-grid">
           <div data-reveal>
-            <div class="status-pill mono">
+            <div class="status-pill">
               <span class="status-dot"></span>
-              CLEARANCE: AVAILABLE FOR SDE &amp; AI/ML INTERNSHIPS
+              Available for SDE &amp; AI/ML Internships
             </div>
+            
             <h1>
-              Kona Aravind Ranga Reddy builds software that <span class="gradient-text">ships</span>, not just compiles.
+              <span class="hero-name">KONA ARAVIND RANGA REDDY</span>
+              <span class="hero-tagline">Building intelligent full-stack systems that <span class="gradient-text">ship</span>.</span>
             </h1>
+            
             <p class="lede">
-              Computer Science &amp; AI/ML undergraduate with hands-on experience building and independently rearchitecting full-stack web applications, integrating multimodal AI (Google Gemini Vision), geospatial algorithms, and concurrency-safe database design.
+              Computer Science &amp; AI/ML undergraduate specializing in full-stack web architectures, Google Gemini Multimodal Vision AI integration, and concurrency-safe database design.
             </p>
 
             <div class="hero-meta mono">
@@ -1268,7 +1416,7 @@
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
                   <circle cx="12" cy="9" r="2.5" />
                 </svg>
-                <span>Bangalore, IN</span>
+                <span>Bangalore, India</span>
               </div>
               <div class="hero-meta-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1279,8 +1427,7 @@
               </div>
               <div class="hero-meta-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
                 <span>+91 9160397434</span>
               </div>
@@ -1288,20 +1435,24 @@
 
             <div class="hero-cta">
               <a class="btn primary" href="#projects">
-                <span>See Live Projects</span>
+                <span>Explore Projects</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
               </a>
-              <a class="btn ghost" href="Aravind_Kona_Resume.pdf" target="_blank" rel="noopener"
-                download="Kona_Aravind_Ranga_Reddy_Resume.pdf" title="View or Download Resume PDF">
+              <a class="btn ghost" href="https://github.com/aravindkona18090" target="_blank" rel="noopener noreferrer">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <polyline points="14 2 14 8 20 8" />
-                  <line x1="16" y1="13" x2="8" y2="13" />
-                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                 </svg>
-                <span>Resume PDF</span>
+                <span>GitHub</span>
+              </a>
+              <a class="btn ghost" href="https://www.linkedin.com/in/kona-aravind-ranga-reddy-1736b0344" target="_blank" rel="noopener noreferrer">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+                <span>LinkedIn</span>
               </a>
               <button class="btn ghost" id="copyEmailBtn" aria-label="Copy Email Address">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1310,23 +1461,20 @@
                 </svg>
                 <span>Copy Email</span>
               </button>
-              <a class="btn ghost" href="https://www.linkedin.com/in/kona-aravind-ranga-reddy-1736b0344" target="_blank"
-                rel="noopener">LinkedIn</a>
-              <a class="btn ghost" href="https://github.com/aravindkona18090" target="_blank" rel="noopener">GitHub</a>
             </div>
 
             <div class="hero-stats">
               <div class="stat-card">
                 <div class="stat-num" data-target="2">0</div>
-                <div class="stat-label">PRODUCTION APPS</div>
+                <div class="stat-label">Production Apps</div>
               </div>
               <div class="stat-card">
                 <div class="stat-num" data-target="9.27" data-decimal="2">0.00</div>
-                <div class="stat-label">CGPA / 10 (GITAM)</div>
+                <div class="stat-label">CGPA (GITAM)</div>
               </div>
               <div class="stat-card">
                 <div class="stat-num" data-target="97.29" data-decimal="2">0.00</div>
-                <div class="stat-label">DIPLOMA (RANK 4/66)</div>
+                <div class="stat-label">Diploma (Rank 4/66)</div>
               </div>
             </div>
           </div>
@@ -1335,8 +1483,8 @@
             <div class="portrait-card">
               <img src="photo.jpg" alt="Kona Aravind Ranga Reddy" width="220" height="275" loading="eager">
               <div class="portrait-tag mono">
-                <span>BANGALORE NODE</span>
-                <span>KARR.DEV</span>
+                <span>BANGALORE</span>
+                <span>KARR</span>
               </div>
             </div>
           </div>
@@ -1368,186 +1516,84 @@
 
           <!-- CivicConnect Card -->
           <div class="project-card glass-panel" data-reveal>
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 14px;">
-              <div class="project-badge mono">● TEAM OF 6 · TEAM LEAD</div>
-              <span class="mono" style="font-size:11px; font-weight:700; color:var(--teal); background:rgba(0,245,212,0.1); padding:3px 10px; border-radius:4px; border:1px solid rgba(0,245,212,0.28);">Google Gemini Vision AI &amp; GIS</span>
+            <div class="project-card-top">
+              <span class="project-badge mono">● TEAM LEAD (6-PERSON TEAM) → SOLO EXTENSION</span>
+              <span class="live-indicator mono"><span class="pulse-green"></span> RAILWAY LIVE</span>
             </div>
             <div class="project-head">
-              <h3>CivicConnect — AI-Powered Smart Municipal Intelligence Platform</h3>
+              <h3>CivicConnect — AI-Powered Smart Municipal Redressal Platform</h3>
+              <p class="project-subdesc">
+                An automated civic redressal platform connecting citizens, municipal field officers, and administrators to report, route, and resolve public infrastructure issues with multimodal AI diagnostics and GIS mapping.
+              </p>
             </div>
-            <p style="color: #CBD5E1; font-size: 15px; margin-bottom: 16px; line-height: 1.6;">
-              An end-to-end civic issue redressal platform connecting citizens, municipal field workers, and city administrators to automate public infrastructure reporting, routing, and verified resolution.
-            </p>
             <ul class="project-bullets">
-              <li><strong>Solo Re-Architecture:</strong> Built with a 6-person team at a hackathon as team lead, then independently rearchitected and extended it solo — adding the Gemini AI vision pipeline, GIS mapping, and multilingual support.</li>
-              <li><strong>3-Tier Role Architecture:</strong> Architected dedicated workflows for Citizens (voice inputs, 24/7 AI chat), Field Workers (GPS turn-by-turn routing), and Admins (severity heatmaps).</li>
-              <li><strong>Google Gemini Multimodal Vision AI:</strong> Integrated Gemini Vision API for automated complaint classification and severity scoring, with a PyTorch CNN offline fallback (MobileNetV2/ResNet50).</li>
-              <li><strong>45m Geospatial GIS Deduplication:</strong> Engineered geospatial duplicate detection via the Haversine formula, clustering complaints within a 45m radius on Leaflet.js / OpenStreetMap.</li>
+              <li><strong>Multimodal Vision AI:</strong> Integrated Google Gemini Vision API for automatic complaint categorization and severity diagnosis with structured JSON output.</li>
+              <li><strong>45m Geospatial GIS Deduplication:</strong> Eliminates duplicate complaint spam by clustering nearby reports within a 45-meter radius via Haversine GIS on Leaflet.js / OpenStreetMap.</li>
+              <li><strong>3-Tier Role Architecture:</strong> Dedicated workspaces for Citizens (voice inputs, 24/7 AI chat), Field Workers (turn-by-turn GPS navigation), and Admins (heatmap analytics).</li>
             </ul>
-
-            <!-- Interactive Live Vision & GIS Engine Testbed -->
-            <div class="sim-engine-box">
-              <div class="sim-engine-header">
-                <span class="sim-engine-title mono">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                  LIVE TESTBED: GEMINI MULTIMODAL VISION AI &amp; GIS DEDUPLICATION
-                </span>
-                <span class="mono" style="font-size:10px; color:var(--teal);">CLICK INCIDENT TO SIMULATE</span>
-              </div>
-              <div class="sim-btn-group mono">
-                <button class="sim-btn active" id="simBtn-pothole" onclick="runVisionSim('pothole')">🚧 Road Pothole</button>
-                <button class="sim-btn" id="simBtn-light" onclick="runVisionSim('light')">💡 Broken Streetlight</button>
-                <button class="sim-btn" id="simBtn-drainage" onclick="runVisionSim('drainage')">💧 Drainage Leak</button>
-                <button class="sim-btn" id="simBtn-garbage" onclick="runVisionSim('garbage')">🗑️ Garbage Dump</button>
-              </div>
-              <div class="sim-readout-grid mono">
-                <div class="sim-readout-card">
-                  <div class="sim-readout-lbl">Vision Category</div>
-                  <div class="sim-readout-val" id="simVisionCat" style="color:var(--teal);">ROADS &amp; HIGHWAYS</div>
-                </div>
-                <div class="sim-readout-card">
-                  <div class="sim-readout-lbl">Severity Rating</div>
-                  <div class="sim-readout-val" id="simVisionSev" style="color:#F87171;">CRITICAL (HIGH)</div>
-                </div>
-                <div class="sim-readout-card">
-                  <div class="sim-readout-lbl">Haversine GIS 45m</div>
-                  <div class="sim-readout-val" id="simVisionGis" style="color:var(--amber);">RADIUS: 28M (CLUSTERED)</div>
-                </div>
-                <div class="sim-readout-card">
-                  <div class="sim-readout-lbl">Model Pipeline</div>
-                  <div class="sim-readout-val" id="simVisionModel">GEMINI 3.6-FLASH</div>
-                </div>
-              </div>
-            </div>
-
             <div class="tags-row mono">
               <span class="tag-chip">Python</span>
               <span class="tag-chip">PHP 8</span>
               <span class="tag-chip">MySQL</span>
               <span class="tag-chip">Gemini Vision AI</span>
-              <span class="tag-chip">PyTorch (MobileNetV2)</span>
               <span class="tag-chip">Leaflet.js</span>
-              <span class="tag-chip">OpenStreetMap</span>
+              <span class="tag-chip">REST APIs</span>
               <span class="tag-chip">Git</span>
             </div>
-            <div class="live-footer">
-              <div class="live-indicator mono">
-                <span class="pulse-green"></span> DEPLOYED ON RAILWAY
-              </div>
-              <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-                <button class="demo-btn mono" onclick="openModal('civicconnectModal')" style="cursor: pointer;">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                  <span>Architecture Deep Dive</span>
-                </button>
-                <a class="demo-btn mono" href="https://github.com/aravindkona18090/CivicConnect" target="_blank" rel="noopener"
-                  style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: var(--paper);">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path
-                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                  </svg>
-                  <span>GitHub Code</span>
-                </a>
-                <a class="demo-btn mono" href="https://civicconnect.up.railway.app/" target="_blank" rel="noopener">
-                  <span>civicconnect.up.railway.app</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M7 17L17 7M17 7H7M17 7V17" />
-                  </svg>
-                </a>
-              </div>
+            <div class="project-actions">
+              <a class="btn primary btn-sm" href="https://civicconnect.up.railway.app/" target="_blank" rel="noopener noreferrer">
+                <span>Live Demo</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+              </a>
+              <a class="btn ghost btn-sm" href="https://github.com/aravindkona18090/CivicConnect" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                <span>GitHub Repo</span>
+              </a>
+              <button class="btn ghost btn-sm" onclick="openModal('civicconnectModal')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <span>Architecture &amp; Simulator</span>
+              </button>
             </div>
           </div>
 
           <!-- FlexiRide Card -->
           <div class="project-card glass-panel" data-reveal>
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 14px;">
-              <div class="project-badge mono">● TEAM OF 6 · TEAM LEAD</div>
-              <span class="mono" style="font-size:11px; font-weight:700; color:var(--teal); background:rgba(0,245,212,0.1); padding:3px 10px; border-radius:4px; border:1px solid rgba(0,245,212,0.28);">9.6 / 10 Benchmark Score</span>
+            <div class="project-card-top">
+              <span class="project-badge mono">● TEAM LEAD (6-PERSON TEAM) → SOLO EXTENSION</span>
+              <span class="live-indicator mono"><span class="pulse-green"></span> RAILWAY LIVE</span>
             </div>
             <div class="project-head">
-              <h3>FlexiRide — Full-Stack Campus Ride-Sharing Platform</h3>
+              <h3>FlexiRide — Full-Stack Campus Mobility Platform</h3>
+              <p class="project-subdesc">
+                A bike-first campus carpooling platform that connects student commuters to book and share rides in real time, drastically reducing daily travel costs and vehicle emissions.
+              </p>
             </div>
-            <p style="color: #CBD5E1; font-size: 15px; margin-bottom: 16px; line-height: 1.6;">
-              A full-stack, bike-first campus carpooling platform that connects student commuters to post, discover, and book shared rides in real time — reducing daily travel costs and vehicle emissions.
-            </p>
             <ul class="project-bullets">
-              <li><strong>Solo Feature Expansion:</strong> Built with a 6-person team as team lead, then independently rebuilt and extended it solo with dynamic pricing, trust scoring, and additional booking features.</li>
-              <li><strong>Atomic Concurrency &amp; Seat Locking:</strong> Solved seat-booking race conditions using atomic SQL transactions and conditional locking to prevent double-booking across concurrent requests.</li>
-              <li><strong>Dynamic Tiered Pricing Engine:</strong> Implemented a dynamic tiered pricing engine with campus peak-hour surge calculations and eco-incentive discounts for EVs.</li>
-              <li><strong>Aadhaar Verhoeff &amp; Emergency SOS:</strong> Designed an identity trust-scoring model using the Verhoeff checksum algorithm (\(D_5\)) for Aadhaar verification, plus emergency SOS GPS dispatch.</li>
+              <li><strong>Atomic Concurrency &amp; Seat Locking:</strong> Solved seat-booking race conditions using atomic conditional MySQL queries to prevent double-booking across concurrent requests.</li>
+              <li><strong>Dynamic Tiered Pricing Engine:</strong> Implemented marginal distance pricing curves with peak-hour campus surge multipliers and EV eco-discounts.</li>
+              <li><strong>Trust &amp; Emergency Safety:</strong> Implemented Aadhaar ID verification via the mathematical Verhoeff checksum algorithm (\(D_5\)) and one-touch HTML5 GPS SOS dispatch.</li>
             </ul>
-
-            <!-- Interactive Live Dynamic Pricing & Concurrency Engine Testbed -->
-            <div class="sim-engine-box">
-              <div class="sim-engine-header">
-                <span class="sim-engine-title mono">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  LIVE TESTBED: DYNAMIC MARGINAL PRICING &amp; CONCURRENCY LOCK
-                </span>
-                <span class="mono" style="font-size:10px; color:var(--teal);">DRAG DISTANCE SLIDER</span>
-              </div>
-              <div class="sim-slider-row mono">
-                <span style="font-size:12px; color:var(--paper-muted); min-width:110px;">Distance: <strong id="simDistLbl" style="color:var(--teal);">18 km</strong></span>
-                <input type="range" min="3" max="80" value="18" class="sim-slider" id="simDistSlider" oninput="updatePricingSim()">
-              </div>
-              <div class="sim-btn-group mono" style="margin-bottom:10px;">
-                <button class="sim-btn" id="simSurgeBtn" onclick="toggleSurgeSim()">⚡ Peak Surge (1.25x)</button>
-                <button class="sim-btn" id="simEvBtn" onclick="toggleEvSim()">🌱 EV Eco-Discount (-10%)</button>
-              </div>
-              <div class="sim-readout-grid mono">
-                <div class="sim-readout-card">
-                  <div class="sim-readout-lbl">Calculated Share</div>
-                  <div class="sim-readout-val" id="simFareVal" style="color:var(--teal);">₹54.00</div>
-                </div>
-                <div class="sim-readout-card">
-                  <div class="sim-readout-lbl">Marginal Rate</div>
-                  <div class="sim-readout-val" id="simRateVal">₹2.00 / km</div>
-                </div>
-                <div class="sim-readout-card">
-                  <div class="sim-readout-lbl">CO₂ Offset Saved</div>
-                  <div class="sim-readout-val" id="simCo2Val" style="color:#34D399;">0.81 kg CO₂</div>
-                </div>
-                <div class="sim-readout-card">
-                  <div class="sim-readout-lbl">Atomic ACID Lock</div>
-                  <div class="sim-readout-val" style="color:var(--teal);">ACQUIRED (1 SEAT)</div>
-                </div>
-              </div>
-            </div>
-
             <div class="tags-row mono">
               <span class="tag-chip">PHP 8.x</span>
               <span class="tag-chip">MySQL (3NF / ACID)</span>
               <span class="tag-chip">Dynamic Pricing</span>
               <span class="tag-chip">Verhoeff D5</span>
-              <span class="tag-chip">Atomic Concurrency</span>
-              <span class="tag-chip">UPI Gateway</span>
-              <span class="tag-chip">HTML5 GPS SOS</span>
               <span class="tag-chip">Bootstrap</span>
               <span class="tag-chip">Git</span>
             </div>
-            <div class="live-footer">
-              <div class="live-indicator mono">
-                <span class="pulse-green"></span> DEPLOYED ON RAILWAY
-              </div>
-              <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-                <button class="demo-btn mono" onclick="openModal('flexirideModal')" style="cursor: pointer;">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                  <span>Architecture Deep Dive</span>
-                </button>
-                <a class="demo-btn mono" href="https://github.com/aravindkona18090/flexiride" target="_blank" rel="noopener"
-                  style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: var(--paper);">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path
-                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                  </svg>
-                  <span>GitHub Code</span>
-                </a>
-                <a class="demo-btn mono" href="https://flexiride.up.railway.app/" target="_blank" rel="noopener">
-                  <span>flexiride.up.railway.app</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M7 17L17 7M17 7H7M17 7V17" />
-                  </svg>
-                </a>
-              </div>
+            <div class="project-actions">
+              <a class="btn primary btn-sm" href="https://flexiride.up.railway.app/" target="_blank" rel="noopener noreferrer">
+                <span>Live Demo</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+              </a>
+              <a class="btn ghost btn-sm" href="https://github.com/aravindkona18090/flexiride" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                <span>GitHub Repo</span>
+              </a>
+              <button class="btn ghost btn-sm" onclick="openModal('flexirideModal')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <span>Architecture &amp; Simulator</span>
+              </button>
             </div>
           </div>
 
@@ -1571,24 +1617,24 @@
 
           <div class="timeline" data-reveal>
             <div class="tl-card glass-panel">
-              <div class="tl-date mono">AUG 2026 (11–24 AUG 2026) · REMOTE</div>
+              <div class="tl-date mono">AUG 2026 · VIRTUAL RESEARCH &amp; ANALYTICS SPRINT</div>
               <div class="tl-content">
                 <h3>Data Analyst Intern</h3>
                 <div class="tl-org">InAmigos Foundation</div>
                 <div class="tl-highlight mono">
-                  ● Data Analysis &amp; Social Impact
+                  ● Data Research &amp; Social Impact Analytics
                 </div>
                 <ul class="project-bullets" style="margin-top: 14px; margin-bottom: 14px;">
-                  <li>Researched and compiled structured information on 10 Indian NGOs across social sectors, covering their initiatives and areas of work.</li>
-                  <li>Used AI tools to summarize trends and insights into a social-impact analysis report with actionable recommendations.</li>
-                  <li>Collected and organized data on 15+ volunteer opportunities and social initiatives available to students in India.</li>
-                  <li>Generated AI-assisted recommendations to improve NGO outreach, volunteer engagement, fundraising, and online presence.</li>
+                  <li><strong>Structured Dataset Compilation:</strong> Researched and cataloged operational, fundraising, and initiative metrics across 10 major Indian NGOs into a structured analytical repository.</li>
+                  <li><strong>AI-Assisted Trend Extraction &amp; EDA:</strong> Conducted exploratory data analysis using AI-assisted tools to identify volunteer engagement patterns and outreach bottlenecks.</li>
+                  <li><strong>Social Impact Findings Report:</strong> Authored a structured findings report delivering actionable, data-driven strategies for student volunteer recruitment and online fundraising visibility.</li>
+                  <li><strong>Student Initiative Mapping:</strong> Mapped and organized 15+ student volunteer initiatives across India to optimize outreach targeting and youth participation.</li>
                 </ul>
                 <div class="tags-row mono" style="margin-top: 10px;">
-                  <span class="tag-chip">Data Analysis</span>
-                  <span class="tag-chip">AI-Assisted Research</span>
-                  <span class="tag-chip">Trend Summarization</span>
-                  <span class="tag-chip">Social Impact Reporting</span>
+                  <span class="tag-chip">Exploratory Data Analysis (EDA)</span>
+                  <span class="tag-chip">Data Structuring</span>
+                  <span class="tag-chip">AI Trend Analysis</span>
+                  <span class="tag-chip">Impact Reporting</span>
                   <span class="tag-chip">Outreach Strategy</span>
                 </div>
               </div>
@@ -1613,132 +1659,133 @@
             <div class="sub">Languages, frameworks, and core engineering concepts I use to build and architect systems.</div>
           </div>
 
-          <div class="skill-filter-tabs" data-reveal>
-            <button class="tab-btn active" data-filter="all">All Skills</button>
-            <button class="tab-btn" data-filter="languages">Languages</button>
-            <button class="tab-btn" data-filter="ai">AI / ML &amp; Data</button>
-            <button class="tab-btn" data-filter="web">Web &amp; Backend</button>
-            <button class="tab-btn" data-filter="db-sec">DB &amp; Security</button>
-            <button class="tab-btn" data-filter="core">Core CS &amp; Algorithms</button>
-          </div>
-
-          <div class="skills-grid" id="skillsGrid" data-reveal>
-            <!-- Languages -->
-            <div class="skill-card" data-category="languages">
-              <span class="skill-card-cat mono">Languages</span>
-              <span class="skill-card-title">Python</span>
-            </div>
-            <div class="skill-card" data-category="languages">
-              <span class="skill-card-cat mono">Languages</span>
-              <span class="skill-card-title">Java</span>
-            </div>
-            <div class="skill-card" data-category="languages">
-              <span class="skill-card-cat mono">Languages</span>
-              <span class="skill-card-title">C</span>
-            </div>
-            <div class="skill-card" data-category="languages">
-              <span class="skill-card-cat mono">Languages</span>
-              <span class="skill-card-title">C++</span>
-            </div>
-            <div class="skill-card" data-category="languages">
-              <span class="skill-card-cat mono">Languages / DB</span>
-              <span class="skill-card-title">SQL</span>
-            </div>
-            <div class="skill-card" data-category="languages web">
-              <span class="skill-card-cat mono">Languages / Web</span>
-              <span class="skill-card-title">PHP 8.x</span>
-            </div>
-            <div class="skill-card" data-category="languages web">
-              <span class="skill-card-cat mono">Languages / Web</span>
-              <span class="skill-card-title">JavaScript (ES6+)</span>
+          <div class="domains-grid" data-reveal>
+            <!-- Domain 1 -->
+            <div class="domain-card glass-panel">
+              <div>
+                <div class="domain-header">
+                  <div class="domain-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="16 18 22 12 16 6" />
+                      <polyline points="8 6 2 12 8 18" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="domain-badge mono">// DOMAIN_01</span>
+                    <h3 class="domain-title">Core Programming Languages</h3>
+                  </div>
+                </div>
+                <p class="domain-desc">Object-oriented programming, data manipulation, algorithm design, and structured backend business logic.</p>
+                <div class="domain-tags">
+                  <span class="domain-tag">Python</span>
+                  <span class="domain-tag">Java</span>
+                  <span class="domain-tag">C</span>
+                  <span class="domain-tag">SQL</span>
+                  <span class="domain-tag">JavaScript</span>
+                  <span class="domain-tag">PHP</span>
+                  <span class="domain-tag">HTML5 / CSS3</span>
+                </div>
+              </div>
+              <div class="domain-footer mono">
+                <span class="domain-footer-lbl">PRACTICAL APPLICATION:</span>
+                <span>Applied across full-stack engines, data scripts &amp; database transactions.</span>
+              </div>
             </div>
 
-            <!-- AI / ML & Data Science -->
-            <div class="skill-card" data-category="ai">
-              <span class="skill-card-cat mono" style="color: var(--teal);">AI / Multimodal Vision</span>
-              <span class="skill-card-title">Google Gemini Multimodal Vision API</span>
-            </div>
-            <div class="skill-card" data-category="ai">
-              <span class="skill-card-cat mono" style="color: var(--teal);">AI / Machine Learning</span>
-              <span class="skill-card-title">PyTorch (MobileNetV2, ResNet50)</span>
-            </div>
-            <div class="skill-card" data-category="ai">
-              <span class="skill-card-cat mono" style="color: var(--teal);">AI / NLP</span>
-              <span class="skill-card-title">NLP &amp; Prompt Engineering</span>
-            </div>
-            <div class="skill-card" data-category="ai">
-              <span class="skill-card-cat mono" style="color: var(--teal);">AI / Analytics</span>
-              <span class="skill-card-title">Exploratory Data Analysis (EDA)</span>
-            </div>
-
-            <!-- Web & Backend -->
-            <div class="skill-card" data-category="web">
-              <span class="skill-card-cat mono">Backend / APIs</span>
-              <span class="skill-card-title">RESTful APIs &amp; AJAX/Fetch</span>
-            </div>
-            <div class="skill-card" data-category="web">
-              <span class="skill-card-cat mono">Frontend</span>
-              <span class="skill-card-title">HTML5 &amp; CSS3 (Glassmorphism)</span>
-            </div>
-            <div class="skill-card" data-category="web">
-              <span class="skill-card-cat mono">UI Framework</span>
-              <span class="skill-card-title">Bootstrap Framework</span>
-            </div>
-            <div class="skill-card" data-category="web">
-              <span class="skill-card-cat mono">Geospatial Web</span>
-              <span class="skill-card-title">Leaflet.js &amp; OpenStreetMap</span>
-            </div>
-            <div class="skill-card" data-category="web">
-              <span class="skill-card-cat mono">Web APIs</span>
-              <span class="skill-card-title">Web Speech API</span>
+            <!-- Domain 2 -->
+            <div class="domain-card glass-panel">
+              <div>
+                <div class="domain-header">
+                  <div class="domain-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 16v-4" />
+                      <path d="M12 8h.01" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="domain-badge mono" style="color:var(--teal);">// DOMAIN_02</span>
+                    <h3 class="domain-title">Applied AI &amp; Data Engineering</h3>
+                  </div>
+                </div>
+                <p class="domain-desc">Multimodal computer vision integration, structured prompt engineering, and exploratory data analysis.</p>
+                <div class="domain-tags">
+                  <span class="domain-tag highlight">Google Gemini Vision API</span>
+                  <span class="domain-tag highlight">Prompt Engineering</span>
+                  <span class="domain-tag highlight">Exploratory Data Analysis (EDA)</span>
+                  <span class="domain-tag">Machine Learning Foundations</span>
+                </div>
+              </div>
+              <div class="domain-footer mono">
+                <span class="domain-footer-lbl">PRACTICAL APPLICATION:</span>
+                <span>Automated civic image verification &amp; NGO trend intelligence reporting.</span>
+              </div>
             </div>
 
-            <!-- Databases & Security -->
-            <div class="skill-card" data-category="db-sec">
-              <span class="skill-card-cat mono">Database Architecture</span>
-              <span class="skill-card-title">MySQL (3NF, Indexing, Atomic Transactions)</span>
-            </div>
-            <div class="skill-card" data-category="db-sec">
-              <span class="skill-card-cat mono">Database GUI</span>
-              <span class="skill-card-title">MySQL Workbench</span>
-            </div>
-            <div class="skill-card" data-category="db-sec">
-              <span class="skill-card-cat mono">Tools / VCS</span>
-              <span class="skill-card-title">Git &amp; GitHub</span>
-            </div>
-            <div class="skill-card" data-category="db-sec">
-              <span class="skill-card-cat mono">Application Security</span>
-              <span class="skill-card-title">Bcrypt Hashing &amp; CSRF Protection</span>
-            </div>
-            <div class="skill-card" data-category="db-sec">
-              <span class="skill-card-cat mono">Database Security</span>
-              <span class="skill-card-title">Prepared Statements (SQLi Defense)</span>
-            </div>
-            <div class="skill-card" data-category="db-sec">
-              <span class="skill-card-cat mono">Operating Systems</span>
-              <span class="skill-card-title">Linux &amp; Windows</span>
+            <!-- Domain 3 -->
+            <div class="domain-card glass-panel">
+              <div>
+                <div class="domain-header">
+                  <div class="domain-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+                      <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+                      <line x1="6" y1="6" x2="6.01" y2="6" />
+                      <line x1="6" y1="18" x2="6.01" y2="18" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="domain-badge mono">// DOMAIN_03</span>
+                    <h3 class="domain-title">Full-Stack &amp; Database Architecture</h3>
+                  </div>
+                </div>
+                <p class="domain-desc">Relational schema design, transactional integrity, RESTful communications, and GIS map interfaces.</p>
+                <div class="domain-tags">
+                  <span class="domain-tag">MySQL (3NF / Relational)</span>
+                  <span class="domain-tag">MySQL Workbench</span>
+                  <span class="domain-tag">RESTful APIs &amp; AJAX</span>
+                  <span class="domain-tag">Leaflet.js / GIS Maps</span>
+                  <span class="domain-tag">Session Auth &amp; Bcrypt</span>
+                  <span class="domain-tag">Bootstrap UI</span>
+                </div>
+              </div>
+              <div class="domain-footer mono">
+                <span class="domain-footer-lbl">PRACTICAL APPLICATION:</span>
+                <span>Engineered atomic seat locking, 45m GPS deduplication &amp; normalized DB schemas.</span>
+              </div>
             </div>
 
-            <!-- Core CS & Algorithms -->
-            <div class="skill-card" data-category="core">
-              <span class="skill-card-cat mono">Core CS</span>
-              <span class="skill-card-title">Data Structures &amp; Algorithms (DSA)</span>
-            </div>
-            <div class="skill-card" data-category="core">
-              <span class="skill-card-cat mono">Systems &amp; Concurrency</span>
-              <span class="skill-card-title">Database Concurrency Control</span>
-            </div>
-            <div class="skill-card" data-category="core">
-              <span class="skill-card-cat mono">Spatial Algorithms</span>
-              <span class="skill-card-title">Haversine Distance Algorithm</span>
-            </div>
-            <div class="skill-card" data-category="core">
-              <span class="skill-card-cat mono">Checksum Algorithms</span>
-              <span class="skill-card-title">Verhoeff Checksum Algorithm (D5)</span>
-            </div>
-            <div class="skill-card" data-category="core">
-              <span class="skill-card-cat mono">Security Architecture</span>
-              <span class="skill-card-title">Role-Based Access Control (RBAC)</span>
+            <!-- Domain 4 -->
+            <div class="domain-card glass-panel">
+              <div>
+                <div class="domain-header">
+                  <div class="domain-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="domain-badge mono">// DOMAIN_04</span>
+                    <h3 class="domain-title">Engineering Foundation &amp; Tooling</h3>
+                  </div>
+                </div>
+                <p class="domain-desc">Core Computer Science theory, industry version control, and cloud production deployment.</p>
+                <div class="domain-tags">
+                  <span class="domain-tag">Data Structures &amp; Algorithms (DSA)</span>
+                  <span class="domain-tag">Database Management Systems (DBMS)</span>
+                  <span class="domain-tag">Operating Systems (OS)</span>
+                  <span class="domain-tag">Computer Networks</span>
+                  <span class="domain-tag">Object-Oriented Programming (OOP)</span>
+                  <span class="domain-tag">Git &amp; GitHub</span>
+                  <span class="domain-tag">Railway Cloud</span>
+                  <span class="domain-tag">VS Code</span>
+                </div>
+              </div>
+              <div class="domain-footer mono">
+                <span class="domain-footer-lbl">PRACTICAL APPLICATION:</span>
+                <span>Maintained clean branch workflows, cloud hosting, and academic excellence (9.27 CGPA).</span>
+              </div>
             </div>
           </div>
 
@@ -1844,8 +1891,7 @@
               // 06. DISPATCH_TRANSMISSION — GET IN TOUCH</div>
             <h2>Let's build software that ships.</h2>
             <p>
-              Open to internships and entry-level positions in Software Engineering, AI/ML, or Full-Stack Development.
-              Feel free to reach out directly.
+              Actively seeking <strong>Software Engineering (SDE)</strong>, <strong>AI/ML</strong>, and <strong>Full-Stack Internship</strong> opportunities (Bangalore / Hybrid / Remote). Let's connect and discuss how I can contribute to your engineering team.
             </p>
             <div class="contact-actions">
               <a class="btn primary" href="mailto:konaaravind18@gmail.com">
@@ -1855,10 +1901,9 @@
                 </svg>
                 <span>konaaravind18@gmail.com</span>
               </a>
-              <a class="btn ghost" href="https://www.linkedin.com/in/kona-aravind-ranga-reddy-1736b0344" target="_blank"
-                rel="noopener">LinkedIn</a>
-              <a class="btn ghost" href="https://github.com/aravindkona18090" target="_blank" rel="noopener">GitHub</a>
-              <a class="btn ghost" href="https://aravindkona18090.github.io/portfolio/" target="_blank" rel="noopener">Portfolio</a>
+              <a class="btn ghost" href="https://www.linkedin.com/in/kona-aravind-ranga-reddy-1736b0344" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a class="btn ghost" href="https://github.com/aravindkona18090" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a class="btn ghost" href="https://aravindkona18090.github.io/portfolio/" target="_blank" rel="noopener noreferrer">Portfolio</a>
             </div>
           </div>
         </div>
@@ -1886,56 +1931,185 @@
   </div>
 
   <script>
-    // Canvas Ambient Particles Animation
-    (function initCanvas() {
+    // Interactive Neural Constellation Mesh & Mouse Spotlight
+    (function initInteractiveNeuralCanvas() {
       const canvas = document.getElementById('ambientCanvas');
       const ctx = canvas.getContext('2d');
-      let width, height;
+      let width, height, dpr;
       let particles = [];
+      let mouse = { x: -1000, y: -1000, isHovered: false };
 
       function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+        dpr = window.devicePixelRatio || 1;
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+        initParticles();
       }
-      window.addEventListener('resize', resize);
-      resize();
 
-      class Particle {
-        constructor() {
-          this.reset();
+      window.addEventListener('resize', resize);
+
+      // Track cursor position for canvas vectors and CSS grid spotlight
+      function handlePointerMove(e) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        mouse.isHovered = true;
+        document.documentElement.style.setProperty('--mouse-x', `${mouse.x}px`);
+        document.documentElement.style.setProperty('--mouse-y', `${mouse.y}px`);
+      }
+
+      window.addEventListener('mousemove', handlePointerMove, { passive: true });
+      window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          handlePointerMove(e.touches[0]);
         }
-        reset() {
+      }, { passive: true });
+
+      window.addEventListener('mouseleave', () => {
+        mouse.isHovered = false;
+        mouse.x = -1000;
+        mouse.y = -1000;
+      });
+
+      class NeuralNode {
+        constructor() {
+          this.reset(true);
+        }
+        reset(initial = false) {
           this.x = Math.random() * width;
-          this.y = Math.random() * height;
-          this.vx = (Math.random() - 0.5) * 0.35;
-          this.vy = (Math.random() - 0.5) * 0.35;
-          this.size = Math.random() * 2 + 0.8;
-          this.alpha = Math.random() * 0.35 + 0.1;
+          this.y = initial ? Math.random() * height : (Math.random() < 0.5 ? -10 : height + 10);
+          this.vx = (Math.random() - 0.5) * 0.45;
+          this.vy = (Math.random() - 0.5) * 0.45;
+          this.radius = Math.random() * 2 + 1.2;
+          this.baseAlpha = Math.random() * 0.4 + 0.35;
+          this.alpha = this.baseAlpha;
+          // Pulse effect
+          this.pulseSpeed = Math.random() * 0.02 + 0.01;
+          this.pulseVal = Math.random() * Math.PI;
         }
         update() {
           this.x += this.vx;
           this.y += this.vy;
-          if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
+
+          // Gentle pulse
+          this.pulseVal += this.pulseSpeed;
+          this.alpha = this.baseAlpha + Math.sin(this.pulseVal) * 0.15;
+
+          // Mouse magnetic interaction
+          if (mouse.isHovered) {
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 150) {
+              const force = (150 - dist) / 150;
+              this.x += (dx / dist) * force * 0.6;
+              this.y += (dy / dist) * force * 0.6;
+            }
+          }
+
+          // Screen bounds wrap
+          if (this.x < -20) this.x = width + 20;
+          if (this.x > width + 20) this.x = -20;
+          if (this.y < -20) this.y = height + 20;
+          if (this.y > height + 20) this.y = -20;
         }
         draw() {
-          ctx.fillStyle = `rgba(0, 245, 212, ${this.alpha})`;
+          ctx.save();
           ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(0, 245, 212, ${this.alpha})`;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = '#00F5D4';
           ctx.fill();
+          ctx.restore();
         }
       }
 
-      const count = Math.min(Math.floor(window.innerWidth / 22), 50);
-      for (let i = 0; i < count; i++) particles.push(new Particle());
+      function initParticles() {
+        particles = [];
+        // Responsive particle density
+        const count = Math.min(Math.floor((width * height) / 18000), 75);
+        for (let i = 0; i < count; i++) {
+          particles.push(new NeuralNode());
+        }
+      }
+
+      resize();
+
+      function drawConnections() {
+        const maxDist = 120;
+        const mouseMaxDist = 160;
+
+        // Node-to-node telemetry vectors
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < maxDist) {
+              const alpha = (1 - dist / maxDist) * 0.22;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(0, 245, 212, ${alpha})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+
+          // Node-to-cursor laser connections
+          if (mouse.isHovered) {
+            const dx = mouse.x - particles[i].x;
+            const dy = mouse.y - particles[i].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < mouseMaxDist) {
+              const alpha = (1 - dist / mouseMaxDist) * 0.45;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.strokeStyle = `rgba(14, 165, 233, ${alpha})`;
+              ctx.lineWidth = 1.1;
+              ctx.shadowBlur = 6;
+              ctx.shadowColor = '#0EA5E9';
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      let animId = null;
+      let isVisible = true;
 
       function animate() {
+        if (!isVisible) return;
         ctx.clearRect(0, 0, width, height);
+
+        // Update and draw nodes
         particles.forEach(p => {
           p.update();
           p.draw();
         });
-        requestAnimationFrame(animate);
+
+        // Draw connecting vector web
+        drawConnections();
+
+        animId = requestAnimationFrame(animate);
       }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          isVisible = false;
+          if (animId) cancelAnimationFrame(animId);
+        } else {
+          isVisible = true;
+          animId = requestAnimationFrame(animate);
+        }
+      });
+
       animate();
     })();
 
@@ -2022,11 +2196,15 @@
 
     // Active Nav & Multi-Section Rail Laser Progress Tracker
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.navlinks a');
-    const mobileNavLinks = document.querySelectorAll('.mobile-menu a');
+    const navLinks = document.querySelectorAll('.pill-links a');
+    const headerEl = document.getElementById('header');
 
     function updateScrollTracker() {
       const scrollPos = window.scrollY;
+
+      if (headerEl) {
+        headerEl.classList.toggle('scrolled', scrollPos > 25);
+      }
 
       sections.forEach(sec => {
         const id = sec.getAttribute('id');
@@ -2034,7 +2212,7 @@
         const secHeight = sec.offsetHeight;
         const progressEl = sec.querySelector('.rail-progress');
         const nodeEl = document.getElementById(`node-${id}`);
-        const navLink = document.querySelector(`.navlinks a[href="#${id}"]`);
+        const navLink = document.querySelector(`.pill-links a[href="#${id}"]`);
         const mobileNavLink = document.querySelector(`.mobile-menu a[href="#${id}"]`);
 
         const isActive = (scrollPos >= secTop && scrollPos < secTop + secHeight);
@@ -2070,35 +2248,6 @@
     window.addEventListener('scroll', updateScrollTracker, { passive: true });
     updateScrollTracker();
 
-    // Skills Category Filter Tabs
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const skillCards = document.querySelectorAll('.skill-card');
-
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const filter = btn.getAttribute('data-filter');
-
-        skillCards.forEach(card => {
-          const categories = card.getAttribute('data-category').split(' ');
-          if (filter === 'all' || categories.includes(filter)) {
-            card.style.display = 'flex';
-            card.style.opacity = '1';
-            card.style.transform = 'scale(1)';
-          } else {
-            card.style.opacity = '0';
-            card.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-              if (!btn.classList.contains('active') || btn.getAttribute('data-filter') !== filter) return;
-              card.style.display = 'none';
-            }, 150);
-          }
-        });
-      });
-    });
-
     // Copy Email Toast
     const copyEmailBtn = document.getElementById('copyEmailBtn');
     const toast = document.getElementById('toast');
@@ -2114,17 +2263,6 @@
         });
       });
     }
-
-    // Live Telemetry Clock Updater
-    function updateHudTimestamp() {
-      const el = document.getElementById('hudTimestamp');
-      if (!el) return;
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString('en-IN', { hour12: false });
-      el.textContent = `${timeStr} IST`;
-    }
-    setInterval(updateHudTimestamp, 1000);
-    updateHudTimestamp();
 
     // CivicConnect Interactive Vision & GIS Simulation Engine
     const visionSimData = {
@@ -2329,9 +2467,39 @@
           </ul>
         </div>
 
+        <h4>🎮 4. Interactive Dynamic Pricing &amp; Concurrency Engine</h4>
+        <div class="modal-box" style="padding: 14px;">
+          <div class="sim-slider-row mono" style="margin-bottom: 12px;">
+            <span style="font-size:12px; color:var(--paper-muted); min-width:110px;">Distance: <strong id="simDistLbl" style="color:var(--teal);">18 km</strong></span>
+            <input type="range" min="3" max="80" value="18" class="sim-slider" id="simDistSlider" oninput="updatePricingSim()">
+          </div>
+          <div class="sim-btn-group mono" style="margin-bottom:10px;">
+            <button class="sim-btn" id="simSurgeBtn" onclick="toggleSurgeSim()">⚡ Peak Surge (1.25x)</button>
+            <button class="sim-btn" id="simEvBtn" onclick="toggleEvSim()">🌱 EV Eco-Discount (-10%)</button>
+          </div>
+          <div class="sim-readout-grid mono">
+            <div class="sim-readout-card">
+              <div class="sim-readout-lbl">Calculated Share</div>
+              <div class="sim-readout-val" id="simFareVal" style="color:var(--teal);">₹54.00</div>
+            </div>
+            <div class="sim-readout-card">
+              <div class="sim-readout-lbl">Marginal Rate</div>
+              <div class="sim-readout-val" id="simRateVal">₹2.00 / km</div>
+            </div>
+            <div class="sim-readout-card">
+              <div class="sim-readout-lbl">CO₂ Offset Saved</div>
+              <div class="sim-readout-val" id="simCo2Val" style="color:#34D399;">0.81 kg CO₂</div>
+            </div>
+            <div class="sim-readout-card">
+              <div class="sim-readout-lbl">Atomic ACID Lock</div>
+              <div class="sim-readout-val" style="color:var(--teal);">ACQUIRED (1 SEAT)</div>
+            </div>
+          </div>
+        </div>
+
         <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
-          <a class="demo-btn mono" href="https://github.com/aravindkona18090/flexiride" target="_blank" rel="noopener" style="font-size:12px;">GitHub Repo</a>
-          <a class="demo-btn mono" href="https://flexiride.up.railway.app/" target="_blank" rel="noopener" style="font-size:12px; background:var(--teal); color:#030712;">Live Railway Demo ↗</a>
+          <a class="demo-btn mono" href="https://github.com/aravindkona18090/flexiride" target="_blank" rel="noopener noreferrer" style="font-size:12px;">GitHub Repo</a>
+          <a class="demo-btn mono" href="https://flexiride.up.railway.app/" target="_blank" rel="noopener noreferrer" style="font-size:12px; background:var(--teal); color:#030712;">Live Railway Demo ↗</a>
         </div>
 
       </div>
@@ -2367,16 +2535,44 @@
         <h4>🧠 3. AI Engines, Deduplication &amp; Security</h4>
         <div class="modal-box">
           <ul>
-            <li><strong>Google Gemini Multimodal Vision AI (<code>gemini-3.6-flash</code>):</strong> Analyzes uploaded complaint photos in real time, auto-categorizes municipal departments, rates severity levels (<em>Low, Medium, High, Critical</em>), and generates human-like descriptions (with PyTorch MobileNetV2 offline fallback).</li>
+            <li><strong>Google Gemini Multimodal Vision AI (<code>gemini-3.6-flash</code>):</strong> Analyzes uploaded complaint photos in real time, auto-categorizes municipal departments, rates severity levels (<em>Low, Medium, High, Critical</em>), and generates human-like descriptions.</li>
             <li><strong>45-Meter Geospatial Haversine Deduplication:</strong> Eliminates duplicate complaint spam by checking distance radius between new pins and existing tickets on Leaflet/OpenStreetMap.</li>
             <li><strong>Multilingual Generative NLP:</strong> 24/7 session-aware conversational chatbot and dynamic translation engine supporting English, Telugu (తెలుగు), Hindi (हिंदी), and Kannada (ಕನ್ನಡ).</li>
             <li><strong>Enterprise Security Architecture:</strong> PHP 8 REST JSON endpoints, 100% prepared SQL statements, BCRYPT password hashing, zero-leak API keys via environment variables (<code>getenv('GEMINI_API_KEY')</code>), and PHPMailer 6-digit OTP verification.</li>
           </ul>
         </div>
 
+        <h4>🎮 4. Interactive Vision AI &amp; GIS Deduplication Engine</h4>
+        <div class="modal-box" style="padding: 14px;">
+          <div class="sim-btn-group mono" style="margin-bottom: 12px;">
+            <button class="sim-btn active" id="simBtn-pothole" onclick="runVisionSim('pothole')">🚧 Road Pothole</button>
+            <button class="sim-btn" id="simBtn-light" onclick="runVisionSim('light')">💡 Broken Streetlight</button>
+            <button class="sim-btn" id="simBtn-drainage" onclick="runVisionSim('drainage')">💧 Drainage Leak</button>
+            <button class="sim-btn" id="simBtn-garbage" onclick="runVisionSim('garbage')">🗑️ Garbage Dump</button>
+          </div>
+          <div class="sim-readout-grid mono">
+            <div class="sim-readout-card">
+              <div class="sim-readout-lbl">Vision Category</div>
+              <div class="sim-readout-val" id="simVisionCat" style="color:var(--teal);">ROADS &amp; HIGHWAYS</div>
+            </div>
+            <div class="sim-readout-card">
+              <div class="sim-readout-lbl">Severity Rating</div>
+              <div class="sim-readout-val" id="simVisionSev" style="color:#F87171;">CRITICAL (HIGH)</div>
+            </div>
+            <div class="sim-readout-card">
+              <div class="sim-readout-lbl">Haversine GIS 45m</div>
+              <div class="sim-readout-val" id="simVisionGis" style="color:var(--amber);">RADIUS: 28M (CLUSTERED)</div>
+            </div>
+            <div class="sim-readout-card">
+              <div class="sim-readout-lbl">Model Pipeline</div>
+              <div class="sim-readout-val" id="simVisionModel">GEMINI 3.6-FLASH</div>
+            </div>
+          </div>
+        </div>
+
         <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
-          <a class="demo-btn mono" href="https://github.com/aravindkona18090/CivicConnect" target="_blank" rel="noopener" style="font-size:12px;">GitHub Repo</a>
-          <a class="demo-btn mono" href="https://civicconnect.up.railway.app/" target="_blank" rel="noopener" style="font-size:12px; background:var(--teal); color:#030712;">Live Railway Demo ↗</a>
+          <a class="demo-btn mono" href="https://github.com/aravindkona18090/CivicConnect" target="_blank" rel="noopener noreferrer" style="font-size:12px;">GitHub Repo</a>
+          <a class="demo-btn mono" href="https://civicconnect.up.railway.app/" target="_blank" rel="noopener noreferrer" style="font-size:12px; background:var(--teal); color:#030712;">Live Railway Demo ↗</a>
         </div>
 
       </div>
